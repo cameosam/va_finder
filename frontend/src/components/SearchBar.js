@@ -1,13 +1,7 @@
-import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
-import MenuIcon from "@mui/icons-material/Menu";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { styled, alpha } from "@mui/material/styles";
+import InputBase from "@mui/material/InputBase";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -43,47 +37,44 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
+      width: "30ch",
     },
   },
 }));
 
-export default function SearchAppBar() {
+const SearchBar = (props) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            {props.label}
           </Typography>
-          <Search>
+          <Search type="submit">
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="search..."
+              value={props.input}
+              onChange={(event) => props.setInput(event.target.value)}
               inputProps={{ "aria-label": "search" }}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  props.handleSearch(event);
+                }
+              }}
             />
           </Search>
         </Toolbar>
       </AppBar>
     </Box>
   );
-}
+};
+
+export default SearchBar;

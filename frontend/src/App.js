@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Results from "./pages/Results";
-import MainNavigation from "./components/MainNavigation";
 import { SearchContext } from "./context/search";
+import Header from "./components/Header";
 
 function App() {
   const [animeData, setAnimeData] = useState([]);
@@ -20,7 +20,7 @@ function App() {
 
   return (
     <SearchContext.Provider value={{ search, animeData, setData }}>
-      <MainNavigation />
+      <Header />
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

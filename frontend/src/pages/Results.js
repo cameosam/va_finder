@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { SearchContext } from "../context/search";
 import AnimeList from "../components/AnimeList";
 import { Box, Typography } from "@mui/material";
+import Home from "./Home";
 
 const Results = () => {
   const search = useContext(SearchContext);
@@ -21,11 +22,14 @@ const Results = () => {
   }, [search]);
 
   return (
-    <Box mt={2}>
-      {(dataExists && <AnimeList data={search.animeData} />) || (
-        <Typography variant="h4">"Data does not exist"</Typography>
-      )}
-    </Box>
+    <div>
+      <Home label="Pick an Anime" />
+      <Box mt={1}>
+        {(dataExists && <AnimeList data={search.animeData} />) || (
+          <Typography variant="h4">"Data does not exist"</Typography>
+        )}
+      </Box>
+    </div>
   );
 };
 
