@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Results from "./pages/Results";
@@ -12,10 +12,9 @@ function App() {
     setAnimeData(data);
   };
 
-  const search = (searchTerm) => {
-    return fetch(`http://127.0.0.1:8000/anime/${searchTerm}`).then((response) =>
-      response.json()
-    );
+  const search = async (searchTerm) => {
+    const response = await fetch(`http://127.0.0.1:8000/anime/${searchTerm}`);
+    return await response.json();
   };
 
   return (
