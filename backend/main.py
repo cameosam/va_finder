@@ -16,5 +16,5 @@ app.add_middleware(
 
 
 @app.get("/anime/{search_term}")
-async def main(search_term: str, q: str | None = None):
+async def main(search_term: str):
     return search_anime.search_anime(search_term)
