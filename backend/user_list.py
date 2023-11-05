@@ -22,4 +22,4 @@ def user_list(username: str):
     return anime_list['data']  # Limited to the first three entries
 
 
-print(user_list('yoyocami'))
+# print(user_list('yoyocami'))
