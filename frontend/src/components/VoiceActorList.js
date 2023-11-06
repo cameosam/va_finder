@@ -1,17 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
 import InfoCard from "./InfoCard";
 import { Grid } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/search";
 
 const VoiceActorList = (props) => {
-  const navigate = useNavigate();
-  const search = useContext(SearchContext);
-
   const handleOnClick = (mal_id) => {};
 
   return (
-    <Grid container columns={{ xs: 4, sm: 8, md: 12 }}>
+    <Grid
+      container
+      columns={{ xs: 4, sm: 8, md: 12 }}
+      sx={{
+        justifyContent: "center",
+      }}
+    >
       {props.data.map((voice_actor) => (
         <InfoCard
           title={voice_actor.character.name}

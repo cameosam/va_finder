@@ -17,7 +17,13 @@ const AnimeList = (props) => {
   };
 
   return (
-    <Grid container columns={{ xs: 4, sm: 8, md: 12 }}>
+    <Grid
+      container
+      columns={{ xs: 4, sm: 8, md: 12 }}
+      sx={{
+        justifyContent: "center",
+      }}
+    >
       {props.data.map((anime) => (
         <InfoCard
           title={anime.title}

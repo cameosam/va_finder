@@ -46,17 +46,15 @@ const InfoCard = (props) => {
           {!show && (
             <Typography
               variant="h6"
-              sx={[
-                {
-                  display: "inline-flex",
-                  position: "absolute",
-                  top: "0",
-                  padding: "10px",
-                  margin: "5px 0 0 0",
-                  width: "85%",
-                  backgroundColor: "rgba(255, 255, 255, 0.7)",
-                },
-              ]}
+              sx={{
+                display: "inline-flex",
+                position: "absolute",
+                top: "0",
+                padding: "10px",
+                margin: "5px 0 0 0",
+                width: "85%",
+                backgroundColor: "rgba(255, 255, 255, 0.7)",
+              }}
             >
               {short_title}
             </Typography>
@@ -80,17 +78,18 @@ const InfoCard = (props) => {
               {props.title}
             </Typography>
           )}
-
-          <Button
-            size="small"
-            variant="outlined"
-            endIcon={<ArrowForwardIcon />}
-            onClick={onClick}
-            sx={{ alignSelf: "stretch", margin: "5px 0 0 0" }}
-            disabled={props.mal_id == "-1"}
-          >
-            Select
-          </Button>
+          {props.mal_id != "-1" && (
+            <Button
+              size="small"
+              variant="outlined"
+              endIcon={<ArrowForwardIcon />}
+              onClick={onClick}
+              sx={{ alignSelf: "stretch", margin: "5px 0 0 0" }}
+              disabled={props.mal_id == "0"}
+            >
+              Select
+            </Button>
+          )}
         </Paper>
       </Grid>
     </Grid>

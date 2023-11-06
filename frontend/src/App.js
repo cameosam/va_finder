@@ -10,6 +10,7 @@ function App() {
   const [animeData, setAnimeData] = useState([]);
   const [characterData, setCharacterData] = useState([]);
   const [voiceActorData, setVoiceActorData] = useState([]);
+  const [voiceActorInfoData, setVoiceActorInfoData] = useState([]);
 
   const setDataAnime = (data) => {
     setAnimeData(data);
@@ -21,6 +22,10 @@ function App() {
 
   const setDataVoiceActor = (data) => {
     setVoiceActorData(data);
+  };
+
+  const setDataVoiceActorInfo = (data) => {
+    setVoiceActorInfoData(data);
   };
 
   const searchAnime = async (searchTerm) => {
@@ -38,6 +43,11 @@ function App() {
     return await response.json();
   };
 
+  const searchVoiceActorInfo = async (vaId) => {
+    const response = await fetch(`http://127.0.0.1:8000/va_info/${vaId}`);
+    return await response.json();
+  };
+
   return (
     <SearchContext.Provider
       value={{
@@ -50,6 +60,9 @@ function App() {
         searchVoiceActor,
         voiceActorData,
         setDataVoiceActor,
+        searchVoiceActorInfo,
+        voiceActorInfoData,
+        setDataVoiceActorInfo,
       }}
     >
       <Router>

@@ -3,6 +3,7 @@ import { SearchContext } from "../context/search";
 import CharacterList from "../components/CharacterList";
 import { Box, Typography } from "@mui/material";
 import AnimeSearchBar from "./AnimeSearchBar";
+import BackButton from "../components/BackButton";
 
 const Characters = () => {
   const search = useContext(SearchContext);
@@ -28,6 +29,7 @@ const Characters = () => {
 
   return (
     <div>
+      <BackButton path="/anime" />
       <AnimeSearchBar label="Pick character or search different anime" />
       <Box mt={1}>
         {(dataExists && <CharacterList data={search.characterData} />) || (
