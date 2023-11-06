@@ -3,12 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Anime from "./pages/Anime";
 import Characters from "./pages/Characters";
+import VoiceActor from "./pages/VoiceActor";
 import { SearchContext } from "./context/search";
 import Header from "./components/Header";
 
 function App() {
   const [animeData, setAnimeData] = useState([]);
   const [characterData, setCharacterData] = useState([]);
+  const [voiceActorData, setVoiceActorData] = useState([]);
 
   const setDataAnime = (data) => {
     setAnimeData(data);
@@ -16,6 +18,10 @@ function App() {
 
   const setDataCharacters = (data) => {
     setCharacterData(data);
+  };
+
+  const setDataVoiceActor = (data) => {
+    setVoiceActorData(data);
   };
 
   const searchAnime = async (searchTerm) => {
@@ -28,6 +34,11 @@ function App() {
     return await response.json();
   };
 
+  const searchVoiceActor = async (vaId) => {
+    const response = await fetch(`http://127.0.0.1:8000/va_roles/${vaId}`);
+    return await response.json();
+  };
+
   return (
     <SearchContext.Provider
       value={{
@@ -37,6 +48,9 @@ function App() {
         searchCharacters,
         characterData,
         setDataCharacters,
+        searchVoiceActor,
+        voiceActorData,
+        setDataVoiceActor,
       }}
     >
       <Header />
@@ -45,6 +59,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/anime" element={<Anime />} />
           <Route path="/characters" element={<Characters />} />
+          <Route path="/voice-actor" element={<VoiceActor />} />
         </Routes>
       </Router>
     </SearchContext.Provider>

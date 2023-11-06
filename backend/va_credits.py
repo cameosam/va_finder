@@ -9,6 +9,6 @@ def va_credits(va_id: str):
     character_list = response.json()
     response.close()
 
-    return character_list['data']
+    return character_list
 
 # print(va_credits('67'))
