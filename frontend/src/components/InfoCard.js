@@ -1,22 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Paper, Grid, Typography, Button } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/search";
 
-const CharacterCard = (props) => {
-  const name = props.character.character.name;
-  const imageURL = props.character.character.images.jpg.image_url;
-  const mal_id = props.character.character.mal_id;
-
-  const navigate = useNavigate();
-  const search = useContext(SearchContext);
-
-  const handleOnClick = (event) => {};
-
+const AnimeCard = (props) => {
   const [show, setShow] = useState(false);
   const showOverlay = () => {
     setShow(true);
+  };
+
+  const onClick = (event) => {
+    props.handleOnClick(props.mal_id);
+    event.preventDefault();
   };
 
   const hideOverlay = () => {
@@ -40,7 +34,11 @@ const CharacterCard = (props) => {
             },
           ]}
         >
-          <img src={imageURL} alt={name} style={{ height: 300, width: 200 }} />
+          <img
+            src={props.imageURL}
+            alt={props.title}
+            style={{ height: 300, width: 200 }}
+          />
 
           {show && (
             <Typography
@@ -57,14 +55,14 @@ const CharacterCard = (props) => {
                 },
               ]}
             >
-              {name}
+              {props.title}
             </Typography>
           )}
           <Button
             size="small"
             variant="outlined"
             endIcon={<ArrowForwardIcon />}
-            onClick={handleOnClick}
+            onClick={onClick}
             sx={{ alignSelf: "stretch", margin: "5px 0 0 0" }}
           >
             Select
@@ -75,4 +73,4 @@ const CharacterCard = (props) => {
   );
 };
 
-export default CharacterCard;
+export default AnimeCard;
