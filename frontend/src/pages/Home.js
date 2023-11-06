@@ -11,10 +11,10 @@ const Home = (props) => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    search.search(input).then((data) => {
-      search.setData(data.data);
-      localStorage.setItem("myData", JSON.stringify(data.data));
-      navigate("/results");
+    search.searchAnime(input).then((data) => {
+      search.setDataAnime(data.data);
+      localStorage.setItem("animeData", JSON.stringify(data.data));
+      navigate("/anime");
     });
   };
 

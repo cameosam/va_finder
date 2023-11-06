@@ -4,22 +4,15 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../context/search";
 
-const AnimeCard = (props) => {
-  const title = props.anime.title;
-  const imageURL = props.anime.images.jpg.image_url;
-  const mal_id = props.anime.mal_id;
+const CharacterCard = (props) => {
+  const name = props.character.character.name;
+  const imageURL = props.character.character.images.jpg.image_url;
+  const mal_id = props.character.character.mal_id;
 
   const navigate = useNavigate();
   const search = useContext(SearchContext);
 
-  const handleOnClick = (event) => {
-    event.preventDefault();
-    search.searchCharacters(mal_id).then((data) => {
-      search.setDataCharacters(data.data);
-      localStorage.setItem("characterData", JSON.stringify(data.data));
-      navigate("/characters");
-    });
-  };
+  const handleOnClick = (event) => {};
 
   const [show, setShow] = useState(false);
   const showOverlay = () => {
@@ -47,7 +40,7 @@ const AnimeCard = (props) => {
             },
           ]}
         >
-          <img src={imageURL} alt={title} style={{ height: 300, width: 200 }} />
+          <img src={imageURL} alt={name} style={{ height: 300, width: 200 }} />
 
           {show && (
             <Typography
@@ -64,7 +57,7 @@ const AnimeCard = (props) => {
                 },
               ]}
             >
-              {title}
+              {name}
             </Typography>
           )}
           <Button
@@ -82,4 +75,4 @@ const AnimeCard = (props) => {
   );
 };
 
-export default AnimeCard;
+export default CharacterCard;

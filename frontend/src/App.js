@@ -1,29 +1,50 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Results from "./pages/Results";
+import Anime from "./pages/Anime";
+import Characters from "./pages/Characters";
 import { SearchContext } from "./context/search";
 import Header from "./components/Header";
 
 function App() {
   const [animeData, setAnimeData] = useState([]);
+  const [characterData, setCharacterData] = useState([]);
 
-  const setData = (data) => {
+  const setDataAnime = (data) => {
     setAnimeData(data);
   };
 
-  const search = async (searchTerm) => {
+  const setDataCharacters = (data) => {
+    setCharacterData(data);
+  };
+
+  const searchAnime = async (searchTerm) => {
     const response = await fetch(`http://127.0.0.1:8000/anime/${searchTerm}`);
     return await response.json();
   };
 
+  const searchCharacters = async (animeId) => {
+    const response = await fetch(`http://127.0.0.1:8000/characters/${animeId}`);
+    return await response.json();
+  };
+
   return (
-    <SearchContext.Provider value={{ search, animeData, setData }}>
+    <SearchContext.Provider
+      value={{
+        searchAnime,
+        animeData,
+        setDataAnime,
+        searchCharacters,
+        characterData,
+        setDataCharacters,
+      }}
+    >
       <Header />
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/results" element={<Results />} />
+          <Route path="/anime" element={<Anime />} />
+          <Route path="/characters" element={<Characters />} />
         </Routes>
       </Router>
     </SearchContext.Provider>
