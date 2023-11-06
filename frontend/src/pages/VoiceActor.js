@@ -2,12 +2,15 @@ import React, { useEffect, useContext, useState } from "react";
 import { SearchContext } from "../context/search";
 import VoiceActorList from "../components/VoiceActorList";
 import VoiceActorInfo from "../components/VoiceActorInfo";
-import { Box, Typography, Divider } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import BackButton from "../components/BackButton";
+import SearchBar from "../components/SearchBar";
+
 const VoiceActor = () => {
   const search = useContext(SearchContext);
   const [dataExists, setDataExists] = useState(true);
   const [infoExists, setInfoExists] = useState(true);
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     if (
@@ -48,10 +51,10 @@ const VoiceActor = () => {
         {(infoExists && (
           <VoiceActorInfo data={search.voiceActorInfoData} />
         )) || <Typography variant="h4">"Not sure..."</Typography>}
-        <Divider />
-        {(dataExists && <VoiceActorList data={search.voiceActorData} />) || (
-          <Typography variant="h4">"Data does not exist"</Typography>
-        )}
+        <SearchBar label="Search character" input={input} setInput={setInput} />
+        {(dataExists && (
+          <VoiceActorList data={search.voiceActorData} input={input} />
+        )) || <Typography variant="h4">"Data does not exist"</Typography>}
       </Box>
     </div>
   );

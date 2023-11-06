@@ -2,12 +2,13 @@ import React, { useEffect, useContext, useState } from "react";
 import { SearchContext } from "../context/search";
 import CharacterList from "../components/CharacterList";
 import { Box, Typography } from "@mui/material";
-import AnimeSearchBar from "./AnimeSearchBar";
+import SearchBar from "../components/SearchBar";
 import BackButton from "../components/BackButton";
 
 const Characters = () => {
   const search = useContext(SearchContext);
   const [dataExists, setDataExists] = useState(true);
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     if (
@@ -24,19 +25,35 @@ const Characters = () => {
         setDataExists(false);
       }
     }
-    console.log(search.characterData);
   }, [search]);
 
   return (
-    <div>
-      <BackButton path="/anime" />
-      <AnimeSearchBar label="Pick character or search different anime" />
-      <Box mt={1}>
-        {(dataExists && <CharacterList data={search.characterData} />) || (
-          <Typography variant="h4">"Data does not exist"</Typography>
-        )}
+    <Box mt={1}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          alignContent: "center",
+          justifyContent: "center",
+          margin: "20px",
+        }}
+      >
+        <Typography variant="h4">WHO'S THAT VOICE ACTOR</Typography>
+        <img
+          alt="question mark"
+          src={`${process.env.PUBLIC_URL}/question_mark.png`}
+          height={40}
+          width={40}
+        />
       </Box>
-    </div>
+      <BackButton path="/anime" />
+      <SearchBar label="Search character" input={input} setInput={setInput} />
+      <Box mt={1}>
+        {(dataExists && (
+          <CharacterList data={search.characterData} input={input} />
+        )) || <Typography variant="h4">"Data does not exist"</Typography>}
+      </Box>
+    </Box>
   );
 };
 

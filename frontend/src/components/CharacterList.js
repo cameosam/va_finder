@@ -29,19 +29,24 @@ const CharacterList = (props) => {
         justifyContent: "center",
       }}
     >
-      {props.data.map((character) => (
-        <InfoCard
-          title={character.character.name}
-          imageURL={character.character.images.jpg.image_url}
-          mal_id={
-            character.voice_actors[0]
-              ? String(character.voice_actors[0].person.mal_id)
-              : "0"
-          }
-          key={character.mal_id}
-          handleOnClick={handleOnClick}
-        />
-      ))}
+      {props.data.map(
+        (character) =>
+          character.character.name
+            .toLowerCase()
+            .includes(props.input.toLowerCase()) && (
+            <InfoCard
+              title={character.character.name}
+              imageURL={character.character.images.jpg.image_url}
+              mal_id={
+                character.voice_actors[0]
+                  ? String(character.voice_actors[0].person.mal_id)
+                  : "0"
+              }
+              key={character.mal_id}
+              handleOnClick={handleOnClick}
+            />
+          )
+      )}
     </Grid>
   );
 };

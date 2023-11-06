@@ -60,7 +60,7 @@ const SearchBar = (props) => {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="search anime"
+              placeholder="search"
               value={props.input}
               onChange={(event) => props.setInput(event.target.value)}
               inputProps={{ "aria-label": "search" }}

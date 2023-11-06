@@ -13,15 +13,20 @@ const VoiceActorList = (props) => {
         justifyContent: "center",
       }}
     >
-      {props.data.map((voice_actor) => (
-        <InfoCard
-          title={voice_actor.character.name}
-          imageURL={voice_actor.character.images.jpg.image_url}
-          mal_id="-1"
-          key={voice_actor.mal_id}
-          handleOnClick={handleOnClick}
-        />
-      ))}
+      {props.data.map(
+        (voice_actor) =>
+          voice_actor.character.name
+            .toLowerCase()
+            .includes(props.input.toLowerCase()) && (
+            <InfoCard
+              title={voice_actor.character.name}
+              imageURL={voice_actor.character.images.jpg.image_url}
+              mal_id="-1"
+              key={voice_actor.mal_id}
+              handleOnClick={handleOnClick}
+            />
+          )
+      )}
     </Grid>
   );
 };
