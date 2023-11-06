@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { Paper, Grid, Typography, Button } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-const AnimeCard = (props) => {
+const InfoCard = (props) => {
+  const short_title =
+    props.title.length > 15
+      ? `${props.title.substring(0, 15)}...`
+      : props.title;
   const [show, setShow] = useState(false);
   const showOverlay = () => {
     setShow(true);
@@ -39,6 +43,24 @@ const AnimeCard = (props) => {
             alt={props.title}
             style={{ height: 300, width: 200 }}
           />
+          {!show && (
+            <Typography
+              variant="h6"
+              sx={[
+                {
+                  display: "inline-flex",
+                  position: "absolute",
+                  top: "0",
+                  padding: "10px",
+                  margin: "5px 0 0 0",
+                  width: "85%",
+                  backgroundColor: "rgba(255, 255, 255, 0.7)",
+                },
+              ]}
+            >
+              {short_title}
+            </Typography>
+          )}
 
           {show && (
             <Typography
@@ -73,4 +95,4 @@ const AnimeCard = (props) => {
   );
 };
 
-export default AnimeCard;
+export default InfoCard;
