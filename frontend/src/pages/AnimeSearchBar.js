@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../context/search";
 
-const Home = (props) => {
+const AnimeSearchBar = (props) => {
   const navigate = useNavigate();
   const search = useContext(SearchContext);
   const [input, setInput] = useState("");
@@ -20,8 +20,25 @@ const Home = (props) => {
 
   return (
     <Box mt={1}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          alignContent: "center",
+          justifyContent: "center",
+          margin: "20px",
+        }}
+      >
+        <Typography variant="h4">WHO'S THAT VOICE ACTOR</Typography>
+        <img
+          alt="question mark"
+          src={`${process.env.PUBLIC_URL}/question_mark.png`}
+          height={40}
+          width={40}
+        />
+      </Box>
       <SearchBar
-        label={props.label ? props.label : "Search an Anime"}
+        label={props.label ? props.label : "Search anime"}
         input={input}
         setInput={setInput}
         handleSearch={handleSearch}
@@ -30,4 +47,4 @@ const Home = (props) => {
   );
 };
 
-export default Home;
+export default AnimeSearchBar;

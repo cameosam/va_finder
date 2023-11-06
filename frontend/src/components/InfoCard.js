@@ -4,7 +4,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const InfoCard = (props) => {
   const short_title =
-    props.title.length > 15
+    props.title.length > 17
       ? `${props.title.substring(0, 15)}...`
       : props.title;
   const [show, setShow] = useState(false);
@@ -80,12 +80,14 @@ const InfoCard = (props) => {
               {props.title}
             </Typography>
           )}
+
           <Button
             size="small"
             variant="outlined"
             endIcon={<ArrowForwardIcon />}
             onClick={onClick}
             sx={{ alignSelf: "stretch", margin: "5px 0 0 0" }}
+            disabled={props.mal_id == "-1"}
           >
             Select
           </Button>

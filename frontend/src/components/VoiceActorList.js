@@ -1,19 +1,3 @@
-// import React from "react";
-// import VoiceActorCard from "./VoiceActorCard";
-// import { Grid } from "@mui/material";
-
-// const VoiceActorList = (props) => {
-//   return (
-//     <Grid container columns={{ xs: 4, sm: 8, md: 12 }}>
-//       {props.data.map((voice_actor) => (
-//         <VoiceActorCard voice_actor={voice_actor} key={voice_actor.mal_id} />
-//       ))}
-//     </Grid>
-//   );
-// };
-
-// export default VoiceActorList;
-
 import React, { useContext } from "react";
 import InfoCard from "./InfoCard";
 import { Grid } from "@mui/material";

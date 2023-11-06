@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { SearchContext } from "../context/search";
 import AnimeList from "../components/AnimeList";
 import { Box, Typography } from "@mui/material";
-import Home from "./Home";
+import AnimeSearchBar from "./AnimeSearchBar";
 
 const Anime = () => {
   const search = useContext(SearchContext);
@@ -23,7 +23,7 @@ const Anime = () => {
 
   return (
     <div>
-      <Home label="Pick an anime" />
+      <AnimeSearchBar label="Pick anime or search different anime" />
       <Box mt={1}>
         {(dataExists && <AnimeList data={search.animeData} />) || (
           <Typography variant="h4">"Data does not exist"</Typography>

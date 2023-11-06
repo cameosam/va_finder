@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState } from "react";
 import { SearchContext } from "../context/search";
 import VoiceActorList from "../components/VoiceActorList";
 import { Box, Typography } from "@mui/material";
-import Home from "./Home";
 
 const VoiceActor = () => {
   const search = useContext(SearchContext);
@@ -28,8 +27,8 @@ const VoiceActor = () => {
 
   return (
     <div>
-      {/* <Home label="Pick a character or search a different anime" /> */}
       <Box mt={1}>
+        <Typography variant="h4">IT'S</Typography>
         {(dataExists && <VoiceActorList data={search.voiceActorData} />) || (
           <Typography variant="h4">"Data does not exist"</Typography>
         )}
