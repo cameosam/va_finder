@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import InfoCard from "./InfoCard";
 import { Grid } from "@mui/material";
 
 const VoiceActorList = (props) => {
-  const handleOnClick = (mal_id) => {};
+  const [voiceActors, setVoiceActors] = useState([]);
+  useEffect(() => {
+    if (props.includeAnime == true) {
+      setVoiceActors(
+        new Map([
+          ...props.data.map((va) => [
+            va.character.name + "-" + va.anime.title,
+            va.character.images.jpg.image_url,
+            va.character.mal_id,
+          ]),
+        ])
+      );
+    } else {
+      setVoiceActors(
+        new Map([
+          ...props.data.map((va) => [
+            va.character.name,
+            va.character.images.jpg.image_url,
+            va.mal_id,
+          ]),
+        ])
+      );
+    }
+  }, [props.includeAnime]);
 
   return (
     <Grid
@@ -13,17 +36,15 @@ const VoiceActorList = (props) => {
         justifyContent: "center",
       }}
     >
-      {props.data.map(
-        (voice_actor) =>
-          voice_actor.character.name
-            .toLowerCase()
-            .includes(props.input.toLowerCase()) && (
+      {[...voiceActors].map(
+        ([name, jpg, id]) =>
+          name.toLowerCase().includes(props.input.toLowerCase()) && (
             <InfoCard
-              title={voice_actor.character.name}
-              imageURL={voice_actor.character.images.jpg.image_url}
+              title={name}
+              imageURL={jpg}
               mal_id="-1"
-              key={voice_actor.mal_id}
-              handleOnClick={handleOnClick}
+              key={id}
+              handleOnClick={() => {}}
             />
           )
       )}

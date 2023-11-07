@@ -5,12 +5,19 @@ import VoiceActorInfo from "../components/VoiceActorInfo";
 import { Box, Typography } from "@mui/material";
 import BackButton from "../components/BackButton";
 import SearchBar from "../components/SearchBar";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch from "@mui/material/Switch";
 
 const VoiceActor = () => {
   const search = useContext(SearchContext);
   const [dataExists, setDataExists] = useState(true);
   const [infoExists, setInfoExists] = useState(true);
+  const [includeAnime, setIncludeAnime] = useState(false);
   const [input, setInput] = useState("");
+
+  const handleOnChange = (event) => {
+    setIncludeAnime(event.target.checked);
+  };
 
   useEffect(() => {
     if (
@@ -51,8 +58,17 @@ const VoiceActor = () => {
           <VoiceActorInfo data={search.voiceActorInfoData} />
         )) || <Typography variant="h4">"Not sure..."</Typography>}
         <SearchBar label="Search character" input={input} setInput={setInput} />
+        <FormControlLabel
+          control={<Switch />}
+          label="Include anime"
+          onChange={handleOnChange}
+        />
         {(dataExists && (
-          <VoiceActorList data={search.voiceActorData} input={input} />
+          <VoiceActorList
+            data={search.voiceActorData}
+            input={input}
+            includeAnime={includeAnime}
+          />
         )) || <Typography variant="h4">"Data does not exist"</Typography>}
       </Box>
     </div>
