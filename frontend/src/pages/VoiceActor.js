@@ -41,7 +41,6 @@ const VoiceActor = () => {
         setInfoExists(false);
       }
     }
-    console.log(search.voiceActorInfoData);
   }, [search]);
 
   return (

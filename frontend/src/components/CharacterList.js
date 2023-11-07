@@ -11,7 +11,6 @@ const CharacterList = (props) => {
   const handleOnClick = (mal_id) => {
     search.searchVoiceActorInfo(mal_id).then((data) => {
       search.setDataVoiceActorInfo(data.data);
-      console.log(data.data);
       localStorage.setItem("voiceActorInfoData", JSON.stringify(data.data));
     });
     search.searchVoiceActor(mal_id).then((data) => {
