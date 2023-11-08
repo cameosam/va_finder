@@ -1,12 +1,12 @@
 import React, { useEffect, useContext, useState } from "react";
 import { SearchContext } from "../context/search";
 import VoiceActorList from "../components/VoiceActorList";
-import VoiceActorInfo from "../components/VoiceActorInfo";
 import { Box, Typography } from "@mui/material";
 import BackButton from "../components/BackButton";
 import SearchBar from "../components/SearchBar";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
+import Header from "../components/Header";
 
 const VoiceActor = () => {
   const search = useContext(SearchContext);
@@ -55,7 +55,11 @@ const VoiceActor = () => {
       <Box mt={1}>
         <BackButton path="/characters" />
         {(infoExists && (
-          <VoiceActorInfo data={search.voiceActorInfoData} />
+          <Header
+            title={"IT'S " + search.voiceActorInfoData.name}
+            jpg={search.voiceActorInfoData.images.jpg.image_url}
+            width={20}
+          />
         )) || <Typography variant="h4">"Not sure..."</Typography>}
         <SearchBar label="Search character" input={input} setInput={setInput} />
         <FormControlLabel

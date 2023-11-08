@@ -3,8 +3,9 @@ import { Box, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../context/search";
+import Header from "../components/Header";
 
-const AnimeSearchBar = (props) => {
+const Home = (props) => {
   const navigate = useNavigate();
   const search = useContext(SearchContext);
   const [input, setInput] = useState("");
@@ -20,23 +21,21 @@ const AnimeSearchBar = (props) => {
 
   return (
     <Box mt={1}>
-      <Box
+      <Header
+        title="WHO'S THAT VOICE ACTOR"
+        jpg={`${process.env.PUBLIC_URL}/question_mark.png`}
+        width={30}
+      />
+      <Typography
         sx={{
           display: "flex",
           alignItems: "center",
-          alignContent: "center",
           justifyContent: "center",
-          margin: "20px",
+          margin: "10px",
         }}
       >
-        <Typography variant="h4">WHO'S THAT VOICE ACTOR</Typography>
-        <img
-          alt="question mark"
-          src={`${process.env.PUBLIC_URL}/question_mark.png`}
-          height={40}
-          width={40}
-        />
-      </Box>
+        Figure out where you've heard that voice before!
+      </Typography>
       <SearchBar
         label={props.label ? props.label : "Search anime"}
         input={input}
@@ -47,4 +46,4 @@ const AnimeSearchBar = (props) => {
   );
 };
 
-export default AnimeSearchBar;
+export default Home;

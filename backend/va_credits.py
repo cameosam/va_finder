@@ -1,5 +1,4 @@
 import requests
-import json
 
 
 def va_credits(va_id: str):

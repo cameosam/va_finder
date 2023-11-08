@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AnimeSearchBar from "./pages/AnimeSearchBar";
+import Home from "./pages/Home";
 import Anime from "./pages/Anime";
 import Characters from "./pages/Characters";
 import VoiceActor from "./pages/VoiceActor";
 import { SearchContext } from "./context/search";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 function App() {
   const [animeData, setAnimeData] = useState([]);
   const [characterData, setCharacterData] = useState([]);
   const [voiceActorData, setVoiceActorData] = useState([]);
   const [voiceActorInfoData, setVoiceActorInfoData] = useState([]);
+
+  const theme = createTheme({
+    typography: {
+      fontFamily: "monospace",
+    },
+  });
 
   const setDataAnime = (data) => {
     setAnimeData(data);
@@ -65,14 +72,16 @@ function App() {
         setDataVoiceActorInfo,
       }}
     >
-      <Router>
-        <Routes>
-          <Route path="/" element={<AnimeSearchBar />} />
-          <Route path="/anime" element={<Anime />} />
-          <Route path="/characters" element={<Characters />} />
-          <Route path="/voice-actor" element={<VoiceActor />} />
-        </Routes>
-      </Router>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/anime" element={<Anime />} />
+            <Route path="/characters" element={<Characters />} />
+            <Route path="/voice-actor" element={<VoiceActor />} />
+          </Routes>
+        </Router>
+      </ThemeProvider>
     </SearchContext.Provider>
   );
 }

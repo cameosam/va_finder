@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-const VoiceActorInfo = (props) => {
+const Header = (props) => {
   return (
     <Box
       sx={{
@@ -13,23 +13,23 @@ const VoiceActorInfo = (props) => {
       }}
     >
       <img
-        src={props.data.images.jpg.image_url}
-        alt={props.data.name}
-        style={{ height: 30, width: 20 }}
+        src={props.jpg}
+        alt={props.title}
+        style={{ height: 30, width: props.width }}
       />
       <Typography
         variant="h4"
         sx={{ textTransform: "uppercase", margin: "0 10px 0 10px" }}
       >
-        IT'S {props.data.name}
+        {props.title}
       </Typography>
       <img
-        src={props.data.images.jpg.image_url}
-        alt={props.data.name}
-        style={{ height: 30, width: 20 }}
+        src={props.jpg}
+        alt={props.title}
+        style={{ height: 30, width: props.width }}
       />
     </Box>
   );
 };
 
-export default VoiceActorInfo;
+export default Header;

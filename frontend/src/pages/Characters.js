@@ -4,6 +4,7 @@ import CharacterList from "../components/CharacterList";
 import { Box, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import BackButton from "../components/BackButton";
+import Header from "../components/Header";
 
 const Characters = () => {
   const search = useContext(SearchContext);
@@ -29,23 +30,11 @@ const Characters = () => {
 
   return (
     <Box mt={1}>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          alignContent: "center",
-          justifyContent: "center",
-          margin: "20px",
-        }}
-      >
-        <Typography variant="h4">WHO'S THAT VOICE ACTOR</Typography>
-        <img
-          alt="question mark"
-          src={`${process.env.PUBLIC_URL}/question_mark.png`}
-          height={40}
-          width={40}
-        />
-      </Box>
+      <Header
+        title="WHO'S THAT VOICE ACTOR"
+        jpg={`${process.env.PUBLIC_URL}/question_mark.png`}
+        width={30}
+      />
       <BackButton path="/anime" />
       <SearchBar label="Search character" input={input} setInput={setInput} />
       <Box mt={1}>

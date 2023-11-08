@@ -23,7 +23,6 @@ const CharacterList = (props) => {
   return (
     <Grid
       container
-      columns={{ xs: 4, sm: 8, md: 12 }}
       sx={{
         justifyContent: "center",
       }}

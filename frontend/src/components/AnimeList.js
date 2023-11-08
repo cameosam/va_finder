@@ -19,20 +19,22 @@ const AnimeList = (props) => {
   return (
     <Grid
       container
-      columns={{ xs: 4, sm: 8, md: 12 }}
       sx={{
         justifyContent: "center",
       }}
     >
-      {props.data.map((anime) => (
-        <InfoCard
-          title={anime.title}
-          imageURL={anime.images.jpg.image_url}
-          mal_id={anime.mal_id}
-          key={anime.mal_id}
-          handleOnClick={handleOnClick}
-        />
-      ))}
+      {props.data.map(
+        (anime) =>
+          anime.title.toLowerCase().includes(props.input.toLowerCase()) && (
+            <InfoCard
+              title={anime.title}
+              imageURL={anime.images.jpg.image_url}
+              mal_id={anime.mal_id}
+              key={anime.mal_id}
+              handleOnClick={handleOnClick}
+            />
+          )
+      )}
     </Grid>
   );
 };
