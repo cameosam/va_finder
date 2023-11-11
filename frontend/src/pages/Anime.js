@@ -11,6 +11,14 @@ const Anime = () => {
   const [dataExists, setDataExists] = useState(true);
   const [input, setInput] = useState("");
 
+  const handleSearch = (event) => {
+    event.preventDefault();
+    search.searchAnime(input).then((data) => {
+      search.setDataAnime(data.data);
+      localStorage.setItem("animeData", JSON.stringify(data.data));
+    });
+  };
+
   useEffect(() => {
     if (search.animeData === undefined || search.animeData.length === 0) {
       try {
@@ -31,7 +39,12 @@ const Anime = () => {
         width={30}
       />
       <BackButton path="/" />
-      <SearchBar label="Search anime" input={input} setInput={setInput} />
+      <SearchBar
+        label="Search anime"
+        input={input}
+        setInput={setInput}
+        handleSearch={handleSearch}
+      />
       <Box mt={1}>
         {(dataExists && (
           <AnimeList data={search.animeData} input={input} />
