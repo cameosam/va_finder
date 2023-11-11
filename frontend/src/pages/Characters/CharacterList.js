@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import InfoCard from "./InfoCard";
+import InfoCard from "../../common/InfoCard";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/search";
+import { SearchContext } from "../../context/search";
 
 const CharacterList = (props) => {
   const navigate = useNavigate();

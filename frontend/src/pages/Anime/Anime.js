@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
-import { SearchContext } from "../context/search";
-import AnimeList from "../components/AnimeList";
+import { SearchContext } from "../../context/search";
+import AnimeList from "./AnimeList";
 import { Box, Typography } from "@mui/material";
-import SearchBar from "../components/SearchBar";
-import BackButton from "../components/BackButton";
-import Header from "../components/Header";
+import SearchBar from "../../common/SearchBar";
+import BackButton from "../../common/BackButton";
+import Header from "../../common/Header";
 
 const Anime = () => {
   const search = useContext(SearchContext);

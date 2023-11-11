@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import InfoCard from "./InfoCard";
+import InfoCard from "../../common/InfoCard";
 import { Grid } from "@mui/material";
 
 const VoiceActorList = (props) => {
@@ -11,7 +11,7 @@ const VoiceActorList = (props) => {
           ...props.data.map((va) => [
             va.character.name + "-" + va.anime.title,
             va.character.images.jpg.image_url,
-            va.character.mal_id,
+            va.mal_id,
           ]),
         ])
       );

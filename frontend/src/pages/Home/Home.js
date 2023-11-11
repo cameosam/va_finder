@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Box, Typography } from "@mui/material";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../../common/SearchBar";
 import { useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/search";
-import Header from "../components/Header";
+import { SearchContext } from "../../context/search";
+import Header from "../../common/Header";
 
 const Home = (props) => {
   const navigate = useNavigate();
