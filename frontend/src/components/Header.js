@@ -1,18 +1,34 @@
 import React from "react";
-import { Typography } from "@mui/material";
-import "./Header.css";
+import { Box, Typography } from "@mui/material";
 
-const Header = () => {
+const Header = (props) => {
   return (
-    <div className="header">
-      <Typography>WHO'S THAT VOICE ACTOR</Typography>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        alignContent: "center",
+        justifyContent: "center",
+        margin: "20px",
+      }}
+    >
       <img
-        alt="question mark"
-        src={`${process.env.PUBLIC_URL}/question_mark.png`}
-        height={25}
-        width={25}
+        src={props.jpg}
+        alt={props.title}
+        style={{ height: 30, width: props.width }}
       />
-    </div>
+      <Typography
+        variant="h4"
+        sx={{ textTransform: "uppercase", margin: "0 10px 0 10px" }}
+      >
+        {props.title}
+      </Typography>
+      <img
+        src={props.jpg}
+        alt={props.title}
+        style={{ height: 30, width: props.width }}
+      />
+    </Box>
   );
 };
 

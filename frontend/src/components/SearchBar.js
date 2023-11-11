@@ -60,12 +60,12 @@ const SearchBar = (props) => {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="search..."
+              placeholder="search"
               value={props.input}
               onChange={(event) => props.setInput(event.target.value)}
               inputProps={{ "aria-label": "search" }}
               onKeyPress={(event) => {
-                if (event.key === "Enter") {
+                if (event.key === "Enter" && props.handleSearch) {
                   props.handleSearch(event);
                 }
               }}

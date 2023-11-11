@@ -2,6 +2,15 @@ import { createContext } from "react";
 
 export const SearchContext = createContext({
   animeData: [],
-  search: () => {},
-  setData: () => {},
+  searchCharacters: () => {},
+  setDataAnime: () => {},
+  characterData: [],
+  searchCharacters: () => {},
+  setDataCharacters: () => {},
+  voiceActorData: [],
+  searchVoiceActor: () => {},
+  setDataVoiceActor: () => {},
+  voiceActorInfoData: [],
+  searchVoiceActorInfo: () => {},
+  setDataVoiceActorInfo: () => {},
 });

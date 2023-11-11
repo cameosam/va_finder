@@ -10,4 +10,4 @@ def get_characters(anime_id: str):
     return character_list
 
 
-print(get_characters('1535'))
+# print(get_characters('1535'))
