@@ -13,6 +13,7 @@ const VoiceActor = () => {
   const [dataExists, setDataExists] = useState(true);
   const [infoExists, setInfoExists] = useState(true);
   const [includeAnime, setIncludeAnime] = useState(false);
+  const [voiceActors, setVoiceActors] = useState([]);
   const [input, setInput] = useState("");
 
   const handleOnChange = (event) => {
@@ -48,6 +49,13 @@ const VoiceActor = () => {
         setInfoExists(false);
       }
     }
+    setVoiceActors(
+      search.voiceActorData.filter(
+        (va) =>
+          search.malData.length == 0 ||
+          search.malData.includes(va["anime"]["mal_id"])
+      )
+    );
   }, [search]);
 
   return (
@@ -69,7 +77,7 @@ const VoiceActor = () => {
         />
         {(dataExists && (
           <VoiceActorList
-            data={search.voiceActorData}
+            data={voiceActors}
             input={input}
             includeAnime={includeAnime}
           />

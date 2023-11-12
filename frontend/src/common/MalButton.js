@@ -18,6 +18,7 @@ const MalButton = () => {
   const [error, setError] = React.useState(false);
 
   const handleClickOpen = () => {
+    setInput("");
     setOpen(true);
   };
 
@@ -27,17 +28,28 @@ const MalButton = () => {
   };
 
   const addUsername = () => {
-    search.searchMal(input).then((data) => {
-      if (data.data) {
-        const mal_anime_ids = data.data.map((x) => x["node"]["id"]);
-        search.setDataMal(mal_anime_ids);
-        localStorage.setItem("malData", JSON.stringify(mal_anime_ids));
-        setUsername(input);
-        handleClose();
-      } else {
-        setError(true);
-      }
-    });
+    if (input.length != 0) {
+      search.searchMal(input).then((data) => {
+        if (data.data) {
+          const mal_anime_ids = data.data.map((x) => x["node"]["id"]);
+          search.setDataMal(mal_anime_ids);
+          localStorage.setItem("malData", JSON.stringify(mal_anime_ids));
+          setUsername(input);
+          handleClose();
+        } else {
+          setError(true);
+        }
+      });
+    } else {
+      setError(true);
+    }
+  };
+
+  const removeUsername = () => {
+    setUsername("");
+    search.setDataMal([]);
+    localStorage.removeItem("malData");
+    handleClose();
   };
 
   return (
@@ -56,11 +68,16 @@ const MalButton = () => {
       >
         {username ? username : "Add MAL Username"}
       </Button>
+
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Add MyAnimeList username</DialogTitle>
+        <DialogTitle>
+          {(username ? "Update" : "Add") + " MyAnimeList username"}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Only view anime that you've seen!
+            {username
+              ? "Current username: " + username
+              : "Only view anime that you've seen!"}
           </DialogContentText>
           <TextField
             autoFocus
@@ -79,7 +96,8 @@ const MalButton = () => {
         )}
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={addUsername}>Add</Button>
+          <Button onClick={addUsername}>{username ? "Update" : "Add"}</Button>
+          {username && <Button onClick={removeUsername}>Remove</Button>}
         </DialogActions>
       </Dialog>
     </React.Fragment>

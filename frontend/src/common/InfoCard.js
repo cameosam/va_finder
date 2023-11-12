@@ -3,7 +3,7 @@ import { Paper, Grid, Typography, Button } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const InfoCard = (props) => {
-  const max_length = props.mal_id == "-1" ? 45 : 30;
+  const max_length = props.mal_id == "-1" ? 45 : 25;
   const short_length = props.mal_id == "-1" ? 40 : 20;
 
   const short_title =
