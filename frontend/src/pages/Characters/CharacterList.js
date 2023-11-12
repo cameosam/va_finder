@@ -36,8 +36,12 @@ const CharacterList = (props) => {
               title={character.character.name}
               imageURL={character.character.images.jpg.image_url}
               mal_id={
-                character.voice_actors[0]
-                  ? String(character.voice_actors[0].person.mal_id)
+                character.voice_actors.find(
+                  (va) => va["language"] == "Japanese"
+                )
+                  ? character.voice_actors.find(
+                      (va) => va["language"] == "Japanese"
+                    ).person.mal_id
                   : "0"
               }
               key={character.mal_id}
