@@ -2,6 +2,7 @@ import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
+import MalButton from "./MalButton";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -75,6 +76,7 @@ const SearchBar = (props) => {
               }}
             />
           </Search>
+          <MalButton />
         </Toolbar>
       </AppBar>
     </Box>

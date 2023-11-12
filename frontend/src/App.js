@@ -6,7 +6,6 @@ import Characters from "./pages/Characters";
 import VoiceActor from "./pages/VoiceActor";
 import { SearchContext } from "./context/search";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import MalButton from "./common/MalButton";
 
 function App() {
   const [animeData, setAnimeData] = useState([]);
@@ -87,7 +86,6 @@ function App() {
       }}
     >
       <ThemeProvider theme={theme}>
-        <MalButton />
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
