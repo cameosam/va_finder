@@ -54,7 +54,7 @@ const InfoCard = (props) => {
                 position: "absolute",
                 top: "0",
                 padding: "10px",
-                margin: "5px 0 0 0",
+                margin: "10px 0 0 0",
                 width: "85%",
                 backgroundColor: "rgba(255, 255, 255, 0.7)",
               },
