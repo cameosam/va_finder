@@ -35,7 +35,7 @@ const Characters = () => {
         jpg={`${process.env.PUBLIC_URL}/question_mark.png`}
         width={30}
       />
-      <BackButton path="/anime" />
+      <BackButton />
       <SearchBar label="Search character" input={input} setInput={setInput} />
       <Box mt={1}>
         {(dataExists && (

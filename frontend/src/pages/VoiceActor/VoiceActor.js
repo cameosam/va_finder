@@ -53,7 +53,7 @@ const VoiceActor = () => {
   return (
     <div>
       <Box mt={1}>
-        <BackButton path="/characters" />
+        <BackButton />
         {(infoExists && (
           <Header
             title={"IT'S " + search.voiceActorInfoData.name}

@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { SearchContext } from "../../context/search";
-import AnimeList from "./AnimeList";
+import AnimeList from "../../common/AnimeList";
 import { Box, Typography } from "@mui/material";
 import SearchBar from "../../common/SearchBar";
 import BackButton from "../../common/BackButton";
@@ -45,7 +45,7 @@ const Anime = () => {
         jpg={`${process.env.PUBLIC_URL}/question_mark.png`}
         width={30}
       />
-      <BackButton path="/" />
+      <BackButton />
       <SearchBar
         label="Search anime"
         input={input}

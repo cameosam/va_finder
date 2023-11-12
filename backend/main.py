@@ -5,6 +5,7 @@ import get_characters
 import va_credits
 import va_info
 import user_list
+import top_anime
 
 app = FastAPI()
 
@@ -42,3 +43,8 @@ async def get_va_info(va_id: str):
 @app.get("/mal/{username}")
 async def get_mal_anime(username: str):
     return user_list.user_list(username)
+
+
+@app.get("/top_anime")
+async def get_top_anime():
+    return top_anime.top_anime()
