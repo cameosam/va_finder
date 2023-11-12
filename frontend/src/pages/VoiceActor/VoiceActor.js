@@ -12,7 +12,7 @@ const VoiceActor = () => {
   const search = useContext(SearchContext);
   const [dataExists, setDataExists] = useState(true);
   const [infoExists, setInfoExists] = useState(true);
-  const [includeAnime, setIncludeAnime] = useState(false);
+  const [includeAnime, setIncludeAnime] = useState(true);
   const [voiceActors, setVoiceActors] = useState([]);
   const [input, setInput] = useState("");
 
@@ -71,7 +71,7 @@ const VoiceActor = () => {
         )) || <Typography variant="h4">"Not sure..."</Typography>}
         <SearchBar label="Search character" input={input} setInput={setInput} />
         <FormControlLabel
-          control={<Switch />}
+          control={<Switch defaultChecked />}
           label="Include anime"
           onChange={handleOnChange}
         />
