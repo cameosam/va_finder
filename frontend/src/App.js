@@ -13,6 +13,7 @@ function App() {
   const [characterData, setCharacterData] = useState([]);
   const [voiceActorData, setVoiceActorData] = useState([]);
   const [voiceActorInfoData, setVoiceActorInfoData] = useState([]);
+  const [malData, setMalData] = useState([]);
 
   const theme = createTheme({
     typography: {
@@ -36,6 +37,10 @@ function App() {
     setVoiceActorInfoData(data);
   };
 
+  const setDataMal = (data) => {
+    setMalData(data);
+  };
+
   const searchAnime = async (searchTerm) => {
     const response = await fetch(`http://127.0.0.1:8000/anime/${searchTerm}`);
     return await response.json();
@@ -56,6 +61,11 @@ function App() {
     return await response.json();
   };
 
+  const searchMal = async (username) => {
+    const response = await fetch(`http://127.0.0.1:8000/mal/${username}`);
+    return await response.json();
+  };
+
   return (
     <SearchContext.Provider
       value={{
@@ -71,6 +81,9 @@ function App() {
         searchVoiceActorInfo,
         voiceActorInfoData,
         setDataVoiceActorInfo,
+        searchMal,
+        malData,
+        setDataMal,
       }}
     >
       <ThemeProvider theme={theme}>

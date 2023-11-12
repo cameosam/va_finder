@@ -3,9 +3,12 @@ import { Paper, Grid, Typography, Button } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const InfoCard = (props) => {
+  const max_length = props.mal_id == "-1" ? 45 : 30;
+  const short_length = props.mal_id == "-1" ? 40 : 20;
+
   const short_title =
-    props.title.length > 15
-      ? `${props.title.substring(0, 10)}...`
+    props.title.length > max_length
+      ? `${props.title.substring(0, short_length)}...`
       : props.title;
   const [show, setShow] = useState(false);
   const showOverlay = () => {
@@ -44,7 +47,7 @@ const InfoCard = (props) => {
             style={{ height: 300, width: 200 }}
           />
           <Typography
-            variant="h6"
+            variant="caption"
             sx={[
               {
                 display: "inline-flex",

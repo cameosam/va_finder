@@ -16,4 +16,8 @@ export const SearchContext = createContext({
   voiceActorInfoData: [],
   searchVoiceActorInfo: () => {},
   setDataVoiceActorInfo: () => {},
+
+  malData: [],
+  searchMal: () => {},
+  setDataMal: () => {},
 });

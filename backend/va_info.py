@@ -7,5 +7,4 @@ def va_info(va_id: str):
     response.raise_for_status()
     va_info = response.json()
     response.close()
-
     return va_info

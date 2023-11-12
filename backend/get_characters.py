@@ -8,6 +8,3 @@ def get_characters(anime_id: str):
     character_list = response.json()
     response.close()
     return character_list
-
-
-# print(get_characters('1535'))

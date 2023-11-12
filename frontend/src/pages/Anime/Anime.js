@@ -9,6 +9,7 @@ import Header from "../../common/Header";
 const Anime = () => {
   const search = useContext(SearchContext);
   const [dataExists, setDataExists] = useState(true);
+  const [animeData, setAnimeData] = useState([]);
   const [input, setInput] = useState("");
 
   const handleSearch = (event) => {
@@ -29,6 +30,12 @@ const Anime = () => {
         setDataExists(false);
       }
     }
+    setAnimeData(
+      search.animeData.filter(
+        (x) =>
+          search.malData.length == 0 || search.malData.includes(x["mal_id"])
+      )
+    );
   }, [search]);
 
   return (
@@ -46,9 +53,9 @@ const Anime = () => {
         handleSearch={handleSearch}
       />
       <Box mt={1}>
-        {(dataExists && (
-          <AnimeList data={search.animeData} input={input} />
-        )) || <Typography variant="h4">"Data does not exist"</Typography>}
+        {(dataExists && <AnimeList data={animeData} input={input} />) || (
+          <Typography variant="h4">"Data does not exist"</Typography>
+        )}
       </Box>
     </Box>
   );

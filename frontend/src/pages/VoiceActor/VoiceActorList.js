@@ -1,31 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
+import { SearchContext } from "../../context/search";
 import InfoCard from "../../common/InfoCard";
 import { Grid } from "@mui/material";
 
 const VoiceActorList = (props) => {
+  const search = useContext(SearchContext);
   const [voiceActors, setVoiceActors] = useState([]);
+
   useEffect(() => {
-    if (props.includeAnime == true) {
-      setVoiceActors(
-        new Map([
-          ...props.data.map((va) => [
-            va.character.name + "-" + va.anime.title,
+    setVoiceActors(
+      new Map([
+        ...props.data
+          .filter(
+            (va) =>
+              search.malData.length == 0 ||
+              search.malData.includes(va["anime"]["mal_id"])
+          )
+          .map((va) => [
+            props.includeAnime == true
+              ? va.character.name + " > " + va.anime.title
+              : va.character.name,
             va.character.images.jpg.image_url,
             va.mal_id,
           ]),
-        ])
-      );
-    } else {
-      setVoiceActors(
-        new Map([
-          ...props.data.map((va) => [
-            va.character.name,
-            va.character.images.jpg.image_url,
-            va.mal_id,
-          ]),
-        ])
-      );
-    }
+      ])
+    );
   }, [props.includeAnime]);
 
   return (

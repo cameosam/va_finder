@@ -7,7 +7,4 @@ def va_credits(va_id: str):
     response.raise_for_status()
     character_list = response.json()
     response.close()
-
     return character_list
-
-# print(va_credits('67'))
