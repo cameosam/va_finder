@@ -6,7 +6,7 @@ import BackButton from "../../common/BackButton";
 import SearchBar from "../../common/SearchBar";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import Header from "../../common/Header";
+import InfoCard from "../../common/InfoCard";
 
 const VoiceActor = () => {
   const search = useContext(SearchContext);
@@ -63,12 +63,21 @@ const VoiceActor = () => {
       <Box mt={1}>
         <BackButton />
         {(infoExists && (
-          <Header
-            title={"IT'S " + search.voiceActorInfoData.name}
-            jpg={search.voiceActorInfoData.images.jpg.image_url}
-            width={20}
-          />
+          <Typography
+            variant="h4"
+            sx={{ textTransform: "uppercase", margin: "0 10px 0 10px" }}
+          >
+            {"IT'S "}
+          </Typography>
         )) || <Typography variant="h4">"Not sure..."</Typography>}
+
+        <InfoCard
+          title={search.voiceActorInfoData.name}
+          imageURL={search.voiceActorInfoData.images.jpg.image_url}
+          mal_id={-1}
+          key={1}
+          handleOnClick={() => {}}
+        />
         <SearchBar label="Search character" input={input} setInput={setInput} />
         <FormControlLabel
           control={<Switch defaultChecked />}

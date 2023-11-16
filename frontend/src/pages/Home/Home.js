@@ -3,7 +3,6 @@ import { Box, Typography } from "@mui/material";
 import SearchBar from "../../common/SearchBar";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/search";
-import Header from "../../common/Header";
 import AnimeList from "../../common/AnimeList";
 
 const Home = (props) => {
@@ -42,11 +41,6 @@ const Home = (props) => {
 
   return (
     <Box mt={1}>
-      <Header
-        title="WHO'S THAT VOICE ACTOR"
-        jpg={`${process.env.PUBLIC_URL}/question_mark.png`}
-        width={30}
-      />
       <Typography
         sx={{
           display: "flex",

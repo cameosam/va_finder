@@ -8,9 +8,10 @@ import Alert from "@mui/material/Alert";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { SearchContext } from "../context/search";
-import IconButton from "@mui/material/IconButton";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import CheckIcon from "@mui/icons-material/Check";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+import Tooltip from "@mui/material/Tooltip";
 
 const MalButton = () => {
   const [open, setOpen] = React.useState(false);
@@ -56,18 +57,19 @@ const MalButton = () => {
 
   return (
     <React.Fragment>
-      <IconButton
-        onClick={handleClickOpen}
-        sx={{
-          margin: "0 0 0 10px",
-        }}
-      >
-        {username ? (
-          <CheckCircleOutlineIcon fontSize="large" />
-        ) : (
-          <AddCircleOutlineIcon fontSize="large" />
-        )}
-      </IconButton>
+      <Tooltip title="MAL username">
+        <Fab
+          color="primary"
+          onClick={handleClickOpen}
+          sx={{
+            position: "fixed",
+            right: "2rem",
+            bottom: "2rem",
+          }}
+        >
+          {username ? <CheckIcon /> : <AddIcon />}
+        </Fab>
+      </Tooltip>
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>

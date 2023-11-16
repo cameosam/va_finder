@@ -4,7 +4,6 @@ import AnimeList from "../../common/AnimeList";
 import { Box, Typography } from "@mui/material";
 import SearchBar from "../../common/SearchBar";
 import BackButton from "../../common/BackButton";
-import Header from "../../common/Header";
 
 const Anime = () => {
   const search = useContext(SearchContext);
@@ -41,11 +40,6 @@ const Anime = () => {
 
   return (
     <Box mt={1}>
-      <Header
-        title="WHO'S THAT VOICE ACTOR"
-        jpg={`${process.env.PUBLIC_URL}/question_mark.png`}
-        width={30}
-      />
       <BackButton />
       <SearchBar
         label="Search anime"

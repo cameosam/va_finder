@@ -6,6 +6,8 @@ import Characters from "./pages/Characters";
 import VoiceActor from "./pages/VoiceActor";
 import { SearchContext } from "./context/search";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Header from "./common/Header";
+import MalButton from "./common/MalButton";
 
 function App() {
   const [animeData, setAnimeData] = useState([]);
@@ -86,6 +88,8 @@ function App() {
       }}
     >
       <ThemeProvider theme={theme}>
+        <Header />
+
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -94,6 +98,7 @@ function App() {
             <Route path="/voice-actor" element={<VoiceActor />} />
           </Routes>
         </Router>
+        <MalButton />
       </ThemeProvider>
     </SearchContext.Provider>
   );

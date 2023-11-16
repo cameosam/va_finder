@@ -30,11 +30,6 @@ const Characters = () => {
 
   return (
     <Box mt={1}>
-      <Header
-        title="WHO'S THAT VOICE ACTOR"
-        jpg={`${process.env.PUBLIC_URL}/question_mark.png`}
-        width={30}
-      />
       <BackButton />
       <SearchBar label="Search character" input={input} setInput={setInput} />
       <Box mt={1}>
