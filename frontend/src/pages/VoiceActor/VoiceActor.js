@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState } from "react";
 import { SearchContext } from "../../context/search";
 import VoiceActorList from "./VoiceActorList";
 import { Box, Typography } from "@mui/material";
-import BackButton from "../../common/BackButton";
 import SearchBar from "../../common/SearchBar";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
@@ -61,7 +60,6 @@ const VoiceActor = () => {
   return (
     <div>
       <Box mt={1}>
-        <BackButton />
         {(infoExists && (
           <Typography
             variant="h4"
@@ -78,7 +76,12 @@ const VoiceActor = () => {
           key={1}
           handleOnClick={() => {}}
         />
-        <SearchBar label="Search character" input={input} setInput={setInput} />
+        <SearchBar
+          label="Search character"
+          input={input}
+          setInput={setInput}
+          includeBack={true}
+        />
         <FormControlLabel
           control={<Switch defaultChecked />}
           label="Include anime"

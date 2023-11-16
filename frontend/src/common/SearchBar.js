@@ -2,6 +2,7 @@ import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
+import BackButton from "./BackButton";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -12,10 +13,6 @@ const Search = styled("div")(({ theme }) => ({
   },
   marginLeft: 0,
   width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -47,20 +44,13 @@ const SearchBar = (props) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            {props.label}
-          </Typography>
+          {props.includeBack && <BackButton />}
           <Search type="submit">
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="search"
+              placeholder={props.label}
               value={props.input}
               onChange={(event) => props.setInput(event.target.value)}
               inputProps={{ "aria-label": "search" }}

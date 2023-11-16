@@ -3,8 +3,6 @@ import { SearchContext } from "../../context/search";
 import CharacterList from "./CharacterList";
 import { Box, Typography } from "@mui/material";
 import SearchBar from "../../common/SearchBar";
-import BackButton from "../../common/BackButton";
-import Header from "../../common/Header";
 
 const Characters = () => {
   const search = useContext(SearchContext);
@@ -30,8 +28,12 @@ const Characters = () => {
 
   return (
     <Box mt={1}>
-      <BackButton />
-      <SearchBar label="Search character" input={input} setInput={setInput} />
+      <SearchBar
+        label="Search character"
+        input={input}
+        setInput={setInput}
+        includeBack={true}
+      />
       <Box mt={1}>
         {(dataExists && (
           <CharacterList data={search.characterData} input={input} />

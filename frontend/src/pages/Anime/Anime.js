@@ -3,7 +3,6 @@ import { SearchContext } from "../../context/search";
 import AnimeList from "../../common/AnimeList";
 import { Box, Typography } from "@mui/material";
 import SearchBar from "../../common/SearchBar";
-import BackButton from "../../common/BackButton";
 
 const Anime = () => {
   const search = useContext(SearchContext);
@@ -40,12 +39,12 @@ const Anime = () => {
 
   return (
     <Box mt={1}>
-      <BackButton />
       <SearchBar
         label="Search anime"
         input={input}
         setInput={setInput}
         handleSearch={handleSearch}
+        includeBack={true}
       />
       <Box mt={1}>
         {(dataExists && <AnimeList data={animeData} input={input} />) || (

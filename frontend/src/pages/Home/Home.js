@@ -49,14 +49,16 @@ const Home = (props) => {
           margin: "10px",
         }}
       >
-        Figure out where you've heard that voice before!
+        Figure out where you've heard that voice before! Search or select anime
+        to start
       </Typography>
       <SearchBar
-        label={props.label ? props.label : "Search anime or select one below"}
+        label="Search anime"
         input={input}
         setInput={setInput}
         handleSearch={handleSearch}
       />
+
       <AnimeList data={topAnime} input="" />
     </Box>
   );

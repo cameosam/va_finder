@@ -88,9 +88,8 @@ function App() {
       }}
     >
       <ThemeProvider theme={theme}>
-        <Header />
-
         <Router>
+          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/anime" element={<Anime />} />

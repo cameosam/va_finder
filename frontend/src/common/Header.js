@@ -1,7 +1,9 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -13,8 +15,13 @@ const Header = () => {
       }}
     >
       <Typography
+        onClick={() => navigate("/")}
         variant="h4"
-        sx={{ textTransform: "uppercase", margin: "0 10px 0 10px" }}
+        sx={{
+          textTransform: "uppercase",
+          margin: "1rem",
+          "&:hover": { cursor: "pointer" },
+        }}
       >
         {"WHO'S THAT VOICE ACTOR "}
         <img
