@@ -1,11 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
 import { SearchContext } from "../../context/search";
 import VoiceActorList from "./VoiceActorList";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Paper, Grid } from "@mui/material";
+
 import SearchBar from "../../common/SearchBar";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import InfoCard from "../../common/InfoCard";
 
 const VoiceActor = () => {
   const search = useContext(SearchContext);
@@ -59,29 +59,26 @@ const VoiceActor = () => {
 
   return (
     <div>
-      <Box mt={1}>
-        {(infoExists && (
-          <Typography
-            variant="h4"
-            sx={{ textTransform: "uppercase", margin: "0 10px 0 10px" }}
-          >
-            {"IT'S "}
-          </Typography>
-        )) || <Typography variant="h4">"Not sure..."</Typography>}
-
-        <InfoCard
-          title={search.voiceActorInfoData.name}
-          imageURL={search.voiceActorInfoData.images.jpg.image_url}
-          mal_id={-1}
-          key={1}
-          handleOnClick={() => {}}
-        />
+      <Box>
+        <Typography
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "10px",
+          }}
+        >
+          {"It's " +
+            search.voiceActorInfoData.name +
+            "! View their other voice acting roles below"}
+        </Typography>
         <SearchBar
           label="Search character"
           input={input}
           setInput={setInput}
           includeBack={true}
         />
+
         <FormControlLabel
           control={<Switch defaultChecked />}
           label="Include anime"

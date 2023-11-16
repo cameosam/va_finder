@@ -49,8 +49,8 @@ const Home = (props) => {
           margin: "10px",
         }}
       >
-        Figure out where you've heard that voice before! Search or select anime
-        to start
+        Figure out where you've heard that voice before! Search or select an
+        anime to start
       </Typography>
       <SearchBar
         label="Search anime"

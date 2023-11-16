@@ -28,6 +28,16 @@ const Characters = () => {
 
   return (
     <Box mt={1}>
+      <Typography
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "10px",
+        }}
+      >
+        Select a character to find the voice actor
+      </Typography>
       <SearchBar
         label="Search character"
         input={input}

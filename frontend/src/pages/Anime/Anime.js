@@ -39,6 +39,16 @@ const Anime = () => {
 
   return (
     <Box mt={1}>
+      <Typography
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "10px",
+        }}
+      >
+        Select an anime or search for a new one
+      </Typography>
       <SearchBar
         label="Search anime"
         input={input}
