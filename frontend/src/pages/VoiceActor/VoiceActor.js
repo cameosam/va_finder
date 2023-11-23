@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { SearchContext } from "../../context/search";
 import VoiceActorList from "./VoiceActorList";
-import { Box, Typography, Paper, Grid } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import SearchBar from "../../common/SearchBar";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -60,18 +60,21 @@ const VoiceActor = () => {
   return (
     <div>
       <Box>
-        <Typography
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "10px",
-          }}
-        >
-          {"It's " +
-            search.voiceActorInfoData.name +
-            "! View their other voice acting roles below"}
-        </Typography>
+        {(infoExists && (
+          <Typography
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "10px",
+            }}
+          >
+            {"It's " +
+              search.voiceActorInfoData.name +
+              "! View their other voice acting roles below"}
+          </Typography>
+        )) || <Typography variant="h4">"Unknown name"</Typography>}
+
         <SearchBar
           label="Search character"
           input={input}
