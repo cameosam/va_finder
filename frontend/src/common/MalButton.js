@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -38,6 +38,7 @@ const MalButton = () => {
           search.setDataMal(mal_anime_ids);
           localStorage.setItem("malData", JSON.stringify(mal_anime_ids));
           setUsername(input);
+          localStorage.setItem("username", input);
           handleClose();
         } else {
           setError(true);
@@ -51,9 +52,20 @@ const MalButton = () => {
   const removeUsername = () => {
     setUsername("");
     search.setDataMal([]);
-    localStorage.removeItem("malData");
+    localStorage.setItem("malData", []);
     handleClose();
   };
+
+  useEffect(() => {
+    if (search.malData === null || search.malData.length === 0) {
+      try {
+        search.setDataMal(JSON.parse(localStorage.getItem("malData")));
+        setUsername(localStorage.getItem("username"));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [search]);
 
   return (
     <React.Fragment>
