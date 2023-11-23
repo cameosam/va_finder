@@ -31,7 +31,7 @@ const MalButton = () => {
   };
 
   const addUsername = () => {
-    if (input.length != 0) {
+    if (input.length !== 0) {
       search.searchMal(input).then((data) => {
         if (data.data) {
           const mal_anime_ids = data.data.map((x) => x["node"]["id"]);
@@ -52,12 +52,12 @@ const MalButton = () => {
   const removeUsername = () => {
     setUsername("");
     search.setDataMal([]);
-    localStorage.setItem("malData", []);
+    localStorage.removeItem("malData");
     handleClose();
   };
 
   useEffect(() => {
-    if (search.malData === null || search.malData.length === 0) {
+    if (search.malData.length === 0 && localStorage.getItem("malData") !== null ) {
       try {
         search.setDataMal(JSON.parse(localStorage.getItem("malData")));
         setUsername(localStorage.getItem("username"));
