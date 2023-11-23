@@ -11,7 +11,7 @@ const VoiceActor = () => {
   const search = useContext(SearchContext);
   const [dataExists, setDataExists] = useState(true);
   const [infoExists, setInfoExists] = useState(true);
-  const [includeAnime, setIncludeAnime] = useState(true);
+  const [includeAnime, setIncludeAnime] = useState(false);
   const [voiceActors, setVoiceActors] = useState([]);
   const [input, setInput] = useState("");
 
@@ -80,7 +80,7 @@ const VoiceActor = () => {
         />
 
         <FormControlLabel
-          control={<Switch defaultChecked />}
+          control={<Switch />}
           label="Include anime"
           onChange={handleOnChange}
         />

@@ -12,7 +12,9 @@ const VoiceActorList = (props) => {
           props.includeAnime == true
             ? va.character.name + " > " + va.anime.title
             : va.character.name,
-          va.character.images.jpg.image_url,
+          va.character.images.jpg.image_url
+            .replace("r/84x124/", "")
+            .split("?")[0],
           va.mal_id,
         ]),
       ])
