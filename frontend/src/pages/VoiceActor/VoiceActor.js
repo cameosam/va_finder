@@ -1,18 +1,18 @@
 import React, { useEffect, useContext, useState } from "react";
-import { SearchContext } from "../context/search";
-import VoiceActorList from "../components/VoiceActorList";
+import { SearchContext } from "../../context/search";
+import VoiceActorList from "./VoiceActorList";
 import { Box, Typography } from "@mui/material";
-import BackButton from "../components/BackButton";
-import SearchBar from "../components/SearchBar";
+
+import SearchBar from "../../common/SearchBar";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import Header from "../components/Header";
 
 const VoiceActor = () => {
   const search = useContext(SearchContext);
   const [dataExists, setDataExists] = useState(true);
   const [infoExists, setInfoExists] = useState(true);
   const [includeAnime, setIncludeAnime] = useState(false);
+  const [voiceActors, setVoiceActors] = useState([]);
   const [input, setInput] = useState("");
 
   const handleOnChange = (event) => {
@@ -48,20 +48,40 @@ const VoiceActor = () => {
         setInfoExists(false);
       }
     }
+    setVoiceActors(
+      search.voiceActorData.filter(
+        (va) =>
+          search.malData.length == 0 ||
+          search.malData.includes(va["anime"]["mal_id"])
+      )
+    );
   }, [search]);
 
   return (
     <div>
-      <Box mt={1}>
-        <BackButton path="/characters" />
+      <Box>
         {(infoExists && (
-          <Header
-            title={"IT'S " + search.voiceActorInfoData.name}
-            jpg={search.voiceActorInfoData.images.jpg.image_url}
-            width={20}
-          />
-        )) || <Typography variant="h4">"Not sure..."</Typography>}
-        <SearchBar label="Search character" input={input} setInput={setInput} />
+          <Typography
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "10px",
+            }}
+          >
+            {"It's " +
+              search.voiceActorInfoData.name +
+              "! View their other voice acting roles below"}
+          </Typography>
+        )) || <Typography variant="h4">"Unknown name"</Typography>}
+
+        <SearchBar
+          label="Search character"
+          input={input}
+          setInput={setInput}
+          includeBack={true}
+        />
+
         <FormControlLabel
           control={<Switch />}
           label="Include anime"
@@ -69,7 +89,7 @@ const VoiceActor = () => {
         />
         {(dataExists && (
           <VoiceActorList
-            data={search.voiceActorData}
+            data={voiceActors}
             input={input}
             includeAnime={includeAnime}
           />

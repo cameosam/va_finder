@@ -1,32 +1,25 @@
 import React, { useEffect, useState } from "react";
-import InfoCard from "./InfoCard";
+import InfoCard from "../../common/InfoCard";
 import { Grid } from "@mui/material";
 
 const VoiceActorList = (props) => {
   const [voiceActors, setVoiceActors] = useState([]);
+
   useEffect(() => {
-    if (props.includeAnime == true) {
-      setVoiceActors(
-        new Map([
-          ...props.data.map((va) => [
-            va.character.name + "-" + va.anime.title,
-            va.character.images.jpg.image_url,
-            va.character.mal_id,
-          ]),
-        ])
-      );
-    } else {
-      setVoiceActors(
-        new Map([
-          ...props.data.map((va) => [
-            va.character.name,
-            va.character.images.jpg.image_url,
-            va.mal_id,
-          ]),
-        ])
-      );
-    }
-  }, [props.includeAnime]);
+    setVoiceActors(
+      new Map([
+        ...props.data.map((va) => [
+          props.includeAnime == true
+            ? va.character.name + " > " + va.anime.title
+            : va.character.name,
+          va.character.images.jpg.image_url
+            .replace("r/84x124/", "")
+            .split("?")[0],
+          va.mal_id,
+        ]),
+      ])
+    );
+  }, [props]);
 
   return (
     <Grid

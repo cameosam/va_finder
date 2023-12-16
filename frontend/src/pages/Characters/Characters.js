@@ -1,10 +1,8 @@
 import React, { useEffect, useContext, useState } from "react";
-import { SearchContext } from "../context/search";
-import CharacterList from "../components/CharacterList";
+import { SearchContext } from "../../context/search";
+import CharacterList from "./CharacterList";
 import { Box, Typography } from "@mui/material";
-import SearchBar from "../components/SearchBar";
-import BackButton from "../components/BackButton";
-import Header from "../components/Header";
+import SearchBar from "../../common/SearchBar";
 
 const Characters = () => {
   const search = useContext(SearchContext);
@@ -30,13 +28,22 @@ const Characters = () => {
 
   return (
     <Box mt={1}>
-      <Header
-        title="WHO'S THAT VOICE ACTOR"
-        jpg={`${process.env.PUBLIC_URL}/question_mark.png`}
-        width={30}
+      <Typography
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "10px",
+        }}
+      >
+        Select a character to find the voice actor
+      </Typography>
+      <SearchBar
+        label="Search character"
+        input={input}
+        setInput={setInput}
+        includeBack={true}
       />
-      <BackButton path="/anime" />
-      <SearchBar label="Search character" input={input} setInput={setInput} />
       <Box mt={1}>
         {(dataExists && (
           <CharacterList data={search.characterData} input={input} />

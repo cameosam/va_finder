@@ -6,12 +6,15 @@ import Characters from "./pages/Characters";
 import VoiceActor from "./pages/VoiceActor";
 import { SearchContext } from "./context/search";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Header from "./common/Header";
+import MalButton from "./common/MalButton";
 
 function App() {
   const [animeData, setAnimeData] = useState([]);
   const [characterData, setCharacterData] = useState([]);
   const [voiceActorData, setVoiceActorData] = useState([]);
   const [voiceActorInfoData, setVoiceActorInfoData] = useState([]);
+  const [malData, setMalData] = useState([]);
 
   const theme = createTheme({
     typography: {
@@ -35,6 +38,10 @@ function App() {
     setVoiceActorInfoData(data);
   };
 
+  const setDataMal = (data) => {
+    setMalData(data);
+  };
+
   const searchAnime = async (searchTerm) => {
     const response = await fetch(`http://127.0.0.1:8000/anime/${searchTerm}`);
     return await response.json();
@@ -55,6 +62,11 @@ function App() {
     return await response.json();
   };
 
+  const searchMal = async (username) => {
+    const response = await fetch(`http://127.0.0.1:8000/mal/${username}`);
+    return await response.json();
+  };
+
   return (
     <SearchContext.Provider
       value={{
@@ -70,10 +82,14 @@ function App() {
         searchVoiceActorInfo,
         voiceActorInfoData,
         setDataVoiceActorInfo,
+        searchMal,
+        malData,
+        setDataMal,
       }}
     >
       <ThemeProvider theme={theme}>
         <Router>
+          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/anime" element={<Anime />} />
@@ -81,6 +97,7 @@ function App() {
             <Route path="/voice-actor" element={<VoiceActor />} />
           </Routes>
         </Router>
+        <MalButton />
       </ThemeProvider>
     </SearchContext.Provider>
   );

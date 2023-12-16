@@ -1,0 +1,23 @@
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useNavigate } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import { Tooltip } from "@mui/material";
+
+const BackButton = () => {
+  const navigate = useNavigate();
+  return (
+    <Tooltip title="Back">
+      <IconButton
+        size="large"
+        edge="start"
+        color="inherit"
+        sx={{ mr: 1 }}
+        onClick={() => navigate(-1)}
+      >
+        <ArrowBackIcon />
+      </IconButton>
+    </Tooltip>
+  );
+};
+
+export default BackButton;

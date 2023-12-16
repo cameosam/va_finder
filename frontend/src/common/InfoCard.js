@@ -4,8 +4,8 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const InfoCard = (props) => {
   const short_title =
-    props.title.length > 15
-      ? `${props.title.substring(0, 10)}...`
+    props.title.length > 34
+      ? `${props.title.substring(0, 29)}...`
       : props.title;
   const [show, setShow] = useState(false);
   const showOverlay = () => {
@@ -41,19 +41,19 @@ const InfoCard = (props) => {
           <img
             src={props.imageURL}
             alt={props.title}
-            style={{ height: 300, width: 200 }}
+            style={{ height: 225, width: 150 }}
           />
           <Typography
-            variant="h6"
+            variant="caption"
             sx={[
               {
                 display: "inline-flex",
                 position: "absolute",
                 top: "0",
                 padding: "10px",
-                margin: "5px 0 0 0",
+                margin: "10px 0 0 0",
                 width: "85%",
-                backgroundColor: "rgba(255, 255, 255, 0.7)",
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
               },
             ]}
           >
