@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import search_anime
-import get_characters
-import va_credits
-import va_info
-import user_list
-import top_anime
+from functions import search_anime
+from functions import get_characters
+from functions import va_credits
+from functions import va_info
+from functions import user_list
+from functions import top_anime
 
 app = FastAPI()
 
