@@ -7,11 +7,10 @@
    ```
    MAL_CLIENT_ID = 'ENTER YOUR API';
    ```
-3. Create virtual environment
+3. Install packages and activate virtual environment with Poetry
    ```
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
+   poetry install
+   poetry shell
    ```
 4. Run
    ```
