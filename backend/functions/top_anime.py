@@ -3,7 +3,7 @@ from constants import JIKAN_API
 
 
 def top_anime():
-    url = JIKAN_API + '/top/anime'
+    url = f'{JIKAN_API}/top/anime'
     response = requests.get(url)
     response.raise_for_status()
     anime_list = response.json()
