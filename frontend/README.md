@@ -1,6 +1,6 @@
 # Frontend
 
-### Installation
+### Installation Frontend ONLY
 
 1. Install NPM packages
    ```
