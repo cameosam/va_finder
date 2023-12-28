@@ -1,3 +1,3 @@
-import VoiceActor from "./VoiceActor.js";
+import VoiceActor from './VoiceActor.js'
 
-export default VoiceActor;
+export default VoiceActor

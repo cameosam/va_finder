@@ -1,13 +1,15 @@
-import React, { useEffect, useContext, useState } from "react";
-import { SearchContext } from "../../context/search";
-import CharacterList from "./CharacterList";
-import { Box, Typography } from "@mui/material";
-import SearchBar from "../../common/SearchBar";
+import React, { useEffect, useContext, useState } from 'react'
+import { Box, Typography } from '@mui/material'
+
+import { SearchContext } from '../../context/search'
+import SearchBar from '../../common/SearchBar'
+
+import CharacterList from './CharacterList'
 
 const Characters = () => {
-  const search = useContext(SearchContext);
-  const [dataExists, setDataExists] = useState(true);
-  const [input, setInput] = useState("");
+  const search = useContext(SearchContext)
+  const [dataExists, setDataExists] = useState(true)
+  const [input, setInput] = useState('')
 
   useEffect(() => {
     if (
@@ -16,24 +18,24 @@ const Characters = () => {
     ) {
       try {
         search.setDataCharacters(
-          JSON.parse(localStorage.getItem("characterData"))
-        );
-        setDataExists(true);
+          JSON.parse(localStorage.getItem('characterData'))
+        )
+        setDataExists(true)
       } catch (error) {
-        console.log(error);
-        setDataExists(false);
+        console.log(error)
+        setDataExists(false)
       }
     }
-  }, [search]);
+  }, [search])
 
   return (
     <Box mt={1}>
       <Typography
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          margin: "10px",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          margin: '10px'
         }}
       >
         Select a character to find the voice actor
@@ -47,10 +49,10 @@ const Characters = () => {
       <Box mt={1}>
         {(dataExists && (
           <CharacterList data={search.characterData} input={input} />
-        )) || <Typography variant="h4">"Data does not exist"</Typography>}
+        )) || <Typography variant="h4">Data does not exist</Typography>}
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default Characters;
+export default Characters

@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext } from 'react'
 
 export const SearchContext = createContext({
   animeData: [],
@@ -19,5 +19,5 @@ export const SearchContext = createContext({
 
   malData: [],
   searchMal: () => {},
-  setDataMal: () => {},
-});
+  setDataMal: () => {}
+})

@@ -1,43 +1,46 @@
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
-import BackButton from "./BackButton";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { AppBar, Box, Toolbar } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
+import { styled, alpha } from '@mui/material/styles'
+import InputBase from '@mui/material/InputBase'
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
+import BackButton from './BackButton'
+
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25)
   },
   marginLeft: 0,
-  width: "100%",
-}));
+  width: '100%'
+}))
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
+const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center'
+}))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
+  color: 'inherit',
+  '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "30ch",
-    },
-  },
-}));
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '30ch'
+    }
+  }
+}))
 
 const SearchBar = (props) => {
   return (
@@ -53,14 +56,14 @@ const SearchBar = (props) => {
               placeholder={props.label}
               value={props.input}
               onChange={(event) => props.setInput(event.target.value)}
-              inputProps={{ "aria-label": "search" }}
+              inputProps={{ 'aria-label': 'search' }}
               onKeyPress={(event) => {
                 if (
-                  event.key === "Enter" &&
-                  props.input.length != 0 &&
+                  event.key === 'Enter' &&
+                  props.input.length !== 0 &&
                   props.handleSearch
                 ) {
-                  props.handleSearch(event);
+                  props.handleSearch(event)
                 }
               }}
             />
@@ -68,7 +71,15 @@ const SearchBar = (props) => {
         </Toolbar>
       </AppBar>
     </Box>
-  );
-};
+  )
+}
 
-export default SearchBar;
+SearchBar.propTypes = {
+  includeBack: PropTypes.bool,
+  label: PropTypes.string,
+  input: PropTypes.string,
+  setInput: PropTypes.func,
+  handleSearch: PropTypes.func
+}
+
+export default SearchBar

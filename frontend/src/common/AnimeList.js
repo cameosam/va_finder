@@ -1,26 +1,29 @@
-import React, { useContext } from "react";
-import InfoCard from "./InfoCard";
-import { Grid } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/search";
+import React, { useContext } from 'react'
+import { Grid } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
+import { SearchContext } from '../context/search'
+
+import InfoCard from './InfoCard'
 
 const AnimeList = (props) => {
-  const navigate = useNavigate();
-  const search = useContext(SearchContext);
+  const navigate = useNavigate()
+  const search = useContext(SearchContext)
 
-  const handleOnClick = (mal_id) => {
-    search.searchCharacters(mal_id).then((data) => {
-      search.setDataCharacters(data.data);
-      localStorage.setItem("characterData", JSON.stringify(data.data));
-      navigate("/characters");
-    });
-  };
+  const handleOnClick = (malId) => {
+    search.searchCharacters(malId).then((data) => {
+      search.setDataCharacters(data.data)
+      localStorage.setItem('characterData', JSON.stringify(data.data))
+      navigate('/characters')
+    })
+  }
 
   return (
     <Grid
       container
       sx={{
-        justifyContent: "center",
+        justifyContent: 'center'
       }}
     >
       {props.data.map(
@@ -36,7 +39,22 @@ const AnimeList = (props) => {
           )
       )}
     </Grid>
-  );
-};
+  )
+}
 
-export default AnimeList;
+AnimeList.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      images: PropTypes.shape({
+        jpg: PropTypes.shape({
+          image_url: PropTypes.string.isRequired
+        })
+      }),
+      mal_id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
+    })
+  ).isRequired,
+  input: PropTypes.string.isRequired
+}
+
+export default AnimeList
