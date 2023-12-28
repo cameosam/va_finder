@@ -1,3 +1,0 @@
-fastapi
-jikanpy-v4
-python-dotenv

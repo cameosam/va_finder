@@ -1,71 +1,72 @@
-import React, { useEffect, useContext } from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import Alert from "@mui/material/Alert";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import { SearchContext } from "../context/search";
-import CheckIcon from "@mui/icons-material/Check";
-import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
-import Tooltip from "@mui/material/Tooltip";
+import React, { useEffect, useContext } from 'react'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import Alert from '@mui/material/Alert'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
+import CheckIcon from '@mui/icons-material/Check'
+import Fab from '@mui/material/Fab'
+import AddIcon from '@mui/icons-material/Add'
+import Tooltip from '@mui/material/Tooltip'
+
+import { SearchContext } from '../context/search'
 
 const MalButton = () => {
-  const [open, setOpen] = React.useState(false);
-  const [input, setInput] = React.useState("");
-  const [username, setUsername] = React.useState("");
-  const search = useContext(SearchContext);
-  const [error, setError] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
+  const [input, setInput] = React.useState('')
+  const [username, setUsername] = React.useState('')
+  const search = useContext(SearchContext)
+  const [error, setError] = React.useState(false)
 
   const handleClickOpen = () => {
-    setInput("");
-    setOpen(true);
-  };
+    setInput('')
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setError(false);
-    setOpen(false);
-  };
+    setError(false)
+    setOpen(false)
+  }
 
   const addUsername = () => {
     if (input.length !== 0) {
       search.searchMal(input).then((data) => {
         if (data.data) {
-          const mal_anime_ids = data.data.map((x) => x["node"]["id"]);
-          search.setDataMal(mal_anime_ids);
-          localStorage.setItem("malData", JSON.stringify(mal_anime_ids));
-          setUsername(input);
-          localStorage.setItem("username", input);
-          handleClose();
+          const malAnimeIds = data.data.map((x) => x.node.id)
+          search.setDataMal(malAnimeIds)
+          localStorage.setItem('malData', JSON.stringify(malAnimeIds))
+          setUsername(input)
+          localStorage.setItem('username', input)
+          handleClose()
         } else {
-          setError(true);
+          setError(true)
         }
-      });
+      })
     } else {
-      setError(true);
+      setError(true)
     }
-  };
+  }
 
   const removeUsername = () => {
-    setUsername("");
-    search.setDataMal([]);
-    localStorage.removeItem("malData");
-    handleClose();
-  };
+    setUsername('')
+    search.setDataMal([])
+    localStorage.removeItem('malData')
+    handleClose()
+  }
 
   useEffect(() => {
-    if (search.malData.length === 0 && localStorage.getItem("malData") !== null ) {
+    if (search.malData.length === 0 && localStorage.getItem('malData') !== null) {
       try {
-        search.setDataMal(JSON.parse(localStorage.getItem("malData")));
-        setUsername(localStorage.getItem("username"));
+        search.setDataMal(JSON.parse(localStorage.getItem('malData')))
+        setUsername(localStorage.getItem('username'))
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     }
-  }, [search]);
+  }, [search])
 
   return (
     <React.Fragment>
@@ -74,9 +75,9 @@ const MalButton = () => {
           color="primary"
           onClick={handleClickOpen}
           sx={{
-            position: "fixed",
-            right: "2rem",
-            bottom: "2rem",
+            position: 'fixed',
+            right: '2rem',
+            bottom: '2rem'
           }}
         >
           {username ? <CheckIcon /> : <AddIcon />}
@@ -85,12 +86,12 @@ const MalButton = () => {
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>
-          {(username ? "Update" : "Add") + " MyAnimeList username"}
+          {(username ? 'Update' : 'Add') + ' MyAnimeList username'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
             {username
-              ? "Current username: " + username
+              ? 'Current username: ' + username
               : "Only view anime that you've seen!"}
           </DialogContentText>
           <TextField
@@ -110,11 +111,11 @@ const MalButton = () => {
         )}
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={addUsername}>{username ? "Update" : "Add"}</Button>
+          <Button onClick={addUsername}>{username ? 'Update' : 'Add'}</Button>
           {username && <Button onClick={removeUsername}>Remove</Button>}
         </DialogActions>
       </Dialog>
     </React.Fragment>
-  );
-};
-export default MalButton;
+  )
+}
+export default MalButton

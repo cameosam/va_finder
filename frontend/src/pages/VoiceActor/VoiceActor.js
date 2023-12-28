@@ -1,23 +1,24 @@
-import React, { useEffect, useContext, useState } from "react";
-import { SearchContext } from "../../context/search";
-import VoiceActorList from "./VoiceActorList";
-import { Box, Typography } from "@mui/material";
+import React, { useEffect, useContext, useState } from 'react'
+import { Box, Typography } from '@mui/material'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Switch from '@mui/material/Switch'
 
-import SearchBar from "../../common/SearchBar";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
+import SearchBar from '../../common/SearchBar'
+import { SearchContext } from '../../context/search'
+
+import VoiceActorList from './VoiceActorList'
 
 const VoiceActor = () => {
-  const search = useContext(SearchContext);
-  const [dataExists, setDataExists] = useState(true);
-  const [infoExists, setInfoExists] = useState(true);
-  const [includeAnime, setIncludeAnime] = useState(false);
-  const [voiceActors, setVoiceActors] = useState([]);
-  const [input, setInput] = useState("");
+  const search = useContext(SearchContext)
+  const [dataExists, setDataExists] = useState(true)
+  const [infoExists, setInfoExists] = useState(true)
+  const [includeAnime, setIncludeAnime] = useState(false)
+  const [voiceActors, setVoiceActors] = useState([])
+  const [input, setInput] = useState('')
 
   const handleOnChange = (event) => {
-    setIncludeAnime(event.target.checked);
-  };
+    setIncludeAnime(event.target.checked)
+  }
 
   useEffect(() => {
     if (
@@ -26,12 +27,12 @@ const VoiceActor = () => {
     ) {
       try {
         search.setDataVoiceActor(
-          JSON.parse(localStorage.getItem("voiceActorData"))
-        );
-        setDataExists(true);
+          JSON.parse(localStorage.getItem('voiceActorData'))
+        )
+        setDataExists(true)
       } catch (error) {
-        console.log(error);
-        setDataExists(false);
+        console.log(error)
+        setDataExists(false)
       }
     }
     if (
@@ -40,22 +41,22 @@ const VoiceActor = () => {
     ) {
       try {
         search.setDataVoiceActorInfo(
-          JSON.parse(localStorage.getItem("voiceActorInfoData"))
-        );
-        setInfoExists(true);
+          JSON.parse(localStorage.getItem('voiceActorInfoData'))
+        )
+        setInfoExists(true)
       } catch (error) {
-        console.log(error);
-        setInfoExists(false);
+        console.log(error)
+        setInfoExists(false)
       }
     }
     setVoiceActors(
       search.voiceActorData.filter(
         (va) =>
-          search.malData.length == 0 ||
-          search.malData.includes(va["anime"]["mal_id"])
+          search.malData.length === 0 ||
+          search.malData.includes(va.anime.mal_id)
       )
-    );
-  }, [search]);
+    )
+  }, [search])
 
   return (
     <div>
@@ -63,17 +64,17 @@ const VoiceActor = () => {
         {(infoExists && (
           <Typography
             sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              margin: "10px",
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '10px'
             }}
           >
             {"It's " +
               search.voiceActorInfoData.name +
-              "! View their other voice acting roles below"}
+              '! View their other voice acting roles below'}
           </Typography>
-        )) || <Typography variant="h4">"Unknown name"</Typography>}
+        )) || <Typography variant="h4">Unknown name</Typography>}
 
         <SearchBar
           label="Search character"
@@ -93,10 +94,10 @@ const VoiceActor = () => {
             input={input}
             includeAnime={includeAnime}
           />
-        )) || <Typography variant="h4">"Data does not exist"</Typography>}
+        )) || <Typography variant="h4">Data does not exist</Typography>}
       </Box>
     </div>
-  );
-};
+  )
+}
 
-export default VoiceActor;
+export default VoiceActor

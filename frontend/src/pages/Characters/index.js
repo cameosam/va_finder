@@ -1,3 +1,3 @@
-import Characters from "./Characters.js";
+import Characters from './Characters.js'
 
-export default Characters;
+export default Characters

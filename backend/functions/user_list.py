@@ -1,6 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
+from constants import MAL_API
 
 load_dotenv()
 CLIENT_ID = os.getenv('MAL_CLIENT_ID')
@@ -8,9 +9,7 @@ CLIENT_ID = os.getenv('MAL_CLIENT_ID')
 
 def user_list(username: str):
 
-    url = 'https://api.myanimelist.net/v2/users/' + \
-        username+'/animelist?status=completed&limit=1000&sort=list_score&fields=id,title,mean'
-
+    url = f'{MAL_API}/users/{username}/animelist?status=completed&limit=500&sort=list_score&fields=id,title,mean'
     response = requests.get(url, headers={
         'X-MAL-CLIENT-ID': CLIENT_ID
     })

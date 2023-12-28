@@ -1,0 +1,27 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: va_finder_backend
+    ports:
+      - "8000:8000"
+    networks:
+      - mynetwork
+    # Add any additional configuration for your FastAPI backend here
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: va_finder_frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+    # Add any additional configuration for your React frontend here
+
+networks:
+  mynetwork:
+    driver: bridge

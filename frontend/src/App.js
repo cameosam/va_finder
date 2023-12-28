@@ -1,71 +1,72 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Anime from "./pages/Anime";
-import Characters from "./pages/Characters";
-import VoiceActor from "./pages/VoiceActor";
-import { SearchContext } from "./context/search";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Header from "./common/Header";
-import MalButton from "./common/MalButton";
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
 
-function App() {
-  const [animeData, setAnimeData] = useState([]);
-  const [characterData, setCharacterData] = useState([]);
-  const [voiceActorData, setVoiceActorData] = useState([]);
-  const [voiceActorInfoData, setVoiceActorInfoData] = useState([]);
-  const [malData, setMalData] = useState([]);
+import Home from './pages/Home'
+import Anime from './pages/Anime'
+import Characters from './pages/Characters'
+import VoiceActor from './pages/VoiceActor'
+import { SearchContext } from './context/search'
+import Header from './common/Header'
+import MalButton from './common/MalButton'
+
+function App () {
+  const [animeData, setAnimeData] = useState([])
+  const [characterData, setCharacterData] = useState([])
+  const [voiceActorData, setVoiceActorData] = useState([])
+  const [voiceActorInfoData, setVoiceActorInfoData] = useState([])
+  const [malData, setMalData] = useState([])
 
   const theme = createTheme({
     typography: {
-      fontFamily: "monospace",
-    },
-  });
+      fontFamily: 'monospace'
+    }
+  })
 
   const setDataAnime = (data) => {
-    setAnimeData(data);
-  };
+    setAnimeData(data)
+  }
 
   const setDataCharacters = (data) => {
-    setCharacterData(data);
-  };
+    setCharacterData(data)
+  }
 
   const setDataVoiceActor = (data) => {
-    setVoiceActorData(data);
-  };
+    setVoiceActorData(data)
+  }
 
   const setDataVoiceActorInfo = (data) => {
-    setVoiceActorInfoData(data);
-  };
+    setVoiceActorInfoData(data)
+  }
 
   const setDataMal = (data) => {
-    setMalData(data);
-  };
+    setMalData(data)
+  }
 
   const searchAnime = async (searchTerm) => {
-    const response = await fetch(`http://127.0.0.1:8000/anime/${searchTerm}`);
-    return await response.json();
-  };
+    const response = await fetch(`http://127.0.0.1:8000/anime/${searchTerm}`)
+    return await response.json()
+  }
 
   const searchCharacters = async (animeId) => {
-    const response = await fetch(`http://127.0.0.1:8000/characters/${animeId}`);
-    return await response.json();
-  };
+    const response = await fetch(`http://127.0.0.1:8000/characters/${animeId}`)
+    return await response.json()
+  }
 
   const searchVoiceActor = async (vaId) => {
-    const response = await fetch(`http://127.0.0.1:8000/va_roles/${vaId}`);
-    return await response.json();
-  };
+    const response = await fetch(`http://127.0.0.1:8000/va_roles/${vaId}`)
+    return await response.json()
+  }
 
   const searchVoiceActorInfo = async (vaId) => {
-    const response = await fetch(`http://127.0.0.1:8000/va_info/${vaId}`);
-    return await response.json();
-  };
+    const response = await fetch(`http://127.0.0.1:8000/va_info/${vaId}`)
+    return await response.json()
+  }
 
   const searchMal = async (username) => {
-    const response = await fetch(`http://127.0.0.1:8000/mal/${username}`);
-    return await response.json();
-  };
+    const response = await fetch(`http://127.0.0.1:8000/mal/${username}`)
+    return await response.json()
+  }
 
   return (
     <SearchContext.Provider
@@ -84,7 +85,7 @@ function App() {
         setDataVoiceActorInfo,
         searchMal,
         malData,
-        setDataMal,
+        setDataMal
       }}
     >
       <ThemeProvider theme={theme}>
@@ -100,7 +101,7 @@ function App() {
         <MalButton />
       </ThemeProvider>
     </SearchContext.Provider>
-  );
+  )
 }
 
-export default App;
+export default App

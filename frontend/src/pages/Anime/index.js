@@ -1,3 +1,3 @@
-import Anime from "./Anime.js";
+import Anime from './Anime.js'
 
-export default Anime;
+export default Anime
