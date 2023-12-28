@@ -21,7 +21,7 @@ const Anime = () => {
 
   useEffect(() => {
     setInput('')
-    if (search.animeData === undefined || search.animeData.length === 0) {
+    if (search.animeData === undefined) {
       try {
         search.setDataAnime(JSON.parse(localStorage.getItem('animeData')))
         setDataExists(true)
