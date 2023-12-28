@@ -2,11 +2,8 @@
 
 ### Installation Frontend ONLY
 
-1. Install NPM packages
+1. Run using Docker
    ```
-   npm install
-   ```
-2. Run
-   ```
-   npm start
+   docker build -t va_finder_frontend .
+   docker run -it va_finder_frontend
    ```
