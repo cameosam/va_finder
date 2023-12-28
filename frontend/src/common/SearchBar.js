@@ -57,7 +57,7 @@ const SearchBar = (props) => {
               value={props.input}
               onChange={(event) => props.setInput(event.target.value)}
               inputProps={{ 'aria-label': 'search' }}
-              onKeyPress={(event) => {
+              onKeyDown={(event) => {
                 if (
                   event.key === 'Enter' &&
                   props.input.length !== 0 &&
