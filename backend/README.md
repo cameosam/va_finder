@@ -7,8 +7,25 @@
    ```
    MAL_CLIENT_ID = 'ENTER YOUR API';
    ```
-4. Run using Docker
+3. Install and run
+
+i. Using Docker
    ```
    docker build -t va_finder_backend .
    docker run -it va_finder_backend
+   ```
+
+ii. Using Poetry
+   ```
+   poetry install
+   poetry shell
+   uvicorn index:app --reload
+   ```
+
+iii. Using Venv
+   ```
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+   uvicorn index:app --reload
    ```
