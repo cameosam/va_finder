@@ -28,7 +28,7 @@
    ```
 3. Enter your base URL in `.env` (frontend directory)
    ```
-   BASE_URL = 'ENTER YOUR BACKEND URL';
+   REACT_APP_BASE_URL = 'ENTER YOUR BACKEND URL';
    ```
 4. Run using Docker
    ```

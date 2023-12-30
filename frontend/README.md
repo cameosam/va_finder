@@ -3,7 +3,7 @@
 ### Installation Frontend ONLY
 1. Enter your base URL in `.env`
    ```
-   BASE_URL = 'ENTER YOUR BACKEND URL';
+   REACT_APP_BASE_URL = 'ENTER YOUR BACKEND URL';
    ```
 2. Install and run
 i. Using Docker
