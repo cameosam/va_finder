@@ -6,14 +6,14 @@ import SearchBar from '../../common/SearchBar'
 import { SearchContext } from '../../context/search'
 import AnimeList from '../../common/AnimeList'
 
-const Home = (props) => {
+const Home = () => {
   const navigate = useNavigate()
   const search = useContext(SearchContext)
   const [input, setInput] = useState('')
   const [topAnime, setTopAnime] = useState([])
 
   async function searchTopAnime () {
-    const response = await fetch('http://127.0.0.1:8000/top_anime')
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/top_anime`)
     return await response.json()
   }
 

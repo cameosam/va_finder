@@ -17,6 +17,8 @@ function App () {
   const [voiceActorInfoData, setVoiceActorInfoData] = useState([])
   const [malData, setMalData] = useState([])
 
+  const BASE_URL = process.env.REACT_APP_BASE_URL
+
   const theme = createTheme({
     typography: {
       fontFamily: 'monospace'
@@ -44,27 +46,27 @@ function App () {
   }
 
   const searchAnime = async (searchTerm) => {
-    const response = await fetch(`http://127.0.0.1:8000/anime/${searchTerm}`)
+    const response = await fetch(`${BASE_URL}/anime/${searchTerm}`)
     return await response.json()
   }
 
   const searchCharacters = async (animeId) => {
-    const response = await fetch(`http://127.0.0.1:8000/characters/${animeId}`)
+    const response = await fetch(`${BASE_URL}/characters/${animeId}`)
     return await response.json()
   }
 
   const searchVoiceActor = async (vaId) => {
-    const response = await fetch(`http://127.0.0.1:8000/va_roles/${vaId}`)
+    const response = await fetch(`${BASE_URL}/va_roles/${vaId}`)
     return await response.json()
   }
 
   const searchVoiceActorInfo = async (vaId) => {
-    const response = await fetch(`http://127.0.0.1:8000/va_info/${vaId}`)
+    const response = await fetch(`${BASE_URL}/va_info/${vaId}`)
     return await response.json()
   }
 
   const searchMal = async (username) => {
-    const response = await fetch(`http://127.0.0.1:8000/mal/${username}`)
+    const response = await fetch(`${BASE_URL}/mal/${username}`)
     return await response.json()
   }
 
