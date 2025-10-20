@@ -1,35 +1,29 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Box, Typography } from '@mui/material'
+import { useContext, useState } from 'react'
+import { Box, Typography, Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 import SearchBar from '../../common/SearchBar'
 import { SearchContext } from '../../context/search'
-import AnimeList from '../../common/AnimeList'
+import Header from '../../common/Header'
 
 const Home = () => {
   const navigate = useNavigate()
   const search = useContext(SearchContext)
   const [input, setInput] = useState('')
-  const [topAnime, setTopAnime] = useState([])
 
   async function searchTopAnime () {
     const response = await fetch(`${process.env.REACT_APP_BASE_URL}/top_anime`)
     return await response.json()
   }
 
-  useEffect(() => {
-    if (topAnime.length === 0) {
-      const localData = JSON.parse(localStorage.getItem('topAnime'))
-      if (localData) {
-        setTopAnime(localData)
-      } else {
-        searchTopAnime().then((data) => {
-          setTopAnime(data.data)
-          localStorage.setItem('topAnime', JSON.stringify(data.data))
-        })
-      }
-    }
-  }, [topAnime])
+  const handleOnClick = (event) => {
+    event.preventDefault()
+    searchTopAnime().then((data) => {
+      search.setDataAnime(data.data)
+      localStorage.setItem('animeData', JSON.stringify(data.data))
+      navigate('/anime')
+    })
+  }
 
   const handleSearch = (event) => {
     event.preventDefault()
@@ -41,26 +35,49 @@ const Home = () => {
   }
 
   return (
-    <Box mt={1}>
-      <Typography
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          margin: '10px'
+    <Box 
+      sx={{
+        minHeight: '80vh',
+        width: '100vw',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        p: { xs: 1, sm: 2, md: 3 },
+        boxSizing: 'border-box',
+      }}>
+      <Header />
+      <Box 
+        sx={{ 
+          width: { xs: '90vw', sm: 600, md: 800, lg: 900 }, 
+          mb: 2, 
+          display: 'flex', 
+          flexDirection: 'column', 
+          alignItems: 'center' 
         }}
       >
-        Figure out where you have heard that voice before! Search or select an
-        anime to start
-      </Typography>
-      <SearchBar
-        label="Search anime"
-        input={input}
-        setInput={setInput}
-        handleSearch={handleSearch}
-      />
-
-      <AnimeList data={topAnime} input="" />
+        <Typography
+          sx={{ margin: '10px', width: '100%', textAlign: 'center' }}
+        >
+          Figure out where you have heard that voice before! Search anime to start
+        </Typography>
+        <Box sx={{ width: '100%' }}>
+          <SearchBar
+            label="Search anime"
+            input={input}
+            setInput={setInput}
+            handleSearch={handleSearch}
+          />
+        </Box>
+      </Box>
+      <Button
+        variant="outlined"
+        onClick={handleOnClick}
+        sx={{margin: '10px'}}
+      >
+        Explore Top Anime
+      </Button>
     </Box>
   )
 }
