@@ -4,6 +4,7 @@ import { Box, Typography } from '@mui/material'
 import { SearchContext } from '../../context/search'
 import AnimeList from '../../common/AnimeList'
 import SearchBar from '../../common/SearchBar'
+import Header from '../../common/Header'
 
 const Anime = () => {
   const search = useContext(SearchContext)
@@ -40,6 +41,7 @@ const Anime = () => {
 
   return (
     <Box mt={1}>
+      <Header />
       <Typography
         sx={{
           display: 'flex',

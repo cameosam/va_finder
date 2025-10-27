@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material'
 
 import { SearchContext } from '../../context/search'
 import SearchBar from '../../common/SearchBar'
+import Header from '../../common/Header'
 
 import CharacterList from './CharacterList'
 
@@ -30,6 +31,7 @@ const Characters = () => {
 
   return (
     <Box mt={1}>
+      <Header />
       <Typography
         sx={{
           display: 'flex',

@@ -7,7 +7,6 @@ import Anime from './pages/Anime'
 import Characters from './pages/Characters'
 import VoiceActor from './pages/VoiceActor'
 import { SearchContext } from './context/search'
-import Header from './common/Header'
 import MalButton from './common/MalButton'
 
 function App () {
@@ -92,7 +91,6 @@ function App () {
     >
       <ThemeProvider theme={theme}>
         <Router>
-          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/anime" element={<Anime />} />

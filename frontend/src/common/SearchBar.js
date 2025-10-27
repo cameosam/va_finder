@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { AppBar, Box, Toolbar } from '@mui/material'
+import { Box, Toolbar } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { styled, alpha } from '@mui/material/styles'
 import InputBase from '@mui/material/InputBase'
@@ -45,10 +45,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const SearchBar = (props) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
         <Toolbar>
           {props.includeBack && <BackButton />}
-          <Search type="submit">
+          <Search sx={{borderRadius: '20px', border: 1, borderColor: 'grey.500' }} type="submit">
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -69,7 +68,6 @@ const SearchBar = (props) => {
             />
           </Search>
         </Toolbar>
-      </AppBar>
     </Box>
   )
 }

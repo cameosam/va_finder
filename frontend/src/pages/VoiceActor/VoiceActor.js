@@ -5,6 +5,7 @@ import Switch from '@mui/material/Switch'
 
 import SearchBar from '../../common/SearchBar'
 import { SearchContext } from '../../context/search'
+import Header from '../../common/Header'
 
 import VoiceActorList from './VoiceActorList'
 
@@ -61,6 +62,7 @@ const VoiceActor = () => {
   return (
     <div>
       <Box>
+        <Header />
         {(infoExists && (
           <Typography
             sx={{
