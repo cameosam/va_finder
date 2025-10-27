@@ -3,7 +3,7 @@
 ## About
 * Figure out where you have heard that voice actor before!
 * Add MyAnimeList username to view only completed anime you've seen
-* Available at [va-finder-cameosam.vercel.app](https://va-finder-cameosam.vercel.app/)
+* Available at [va-finder.vercel.app](https://va-finder.vercel.app/)
 * Frontend: React, Backend: Python (MAL/JIKAN API)
 
 ### 1. Search or select an anime
